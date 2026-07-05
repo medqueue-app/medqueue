@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedQueue - Patient Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9fe",
+                        "surface-bright": "#faf9fe",
+                        "secondary-fixed": "#c1e8ff",
+                        "tertiary": "#8a2bb9",
+                        "surface-container-low": "#f4f3f8",
+                        "surface-container-high": "#e9e7ed",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline": "#717786",
+                        "on-primary-container": "#fefcff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#004493",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-surface": "#2f3034",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#60cdff",
+                        "on-surface": "#1a1b1f",
+                        "on-secondary-container": "#005572",
+                        "primary-container": "#0070eb",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#414755",
+                        "on-secondary-fixed": "#001e2b",
+                        "tertiary-fixed": "#f6d9ff",
+                        "primary": "#0058bc",
+                        "on-tertiary-fixed": "#310048",
+                        "secondary-fixed-dim": "#74d1ff",
+                        "on-background": "#1a1b1f",
+                        "background": "#faf9fe",
+                        "secondary": "#006687",
+                        "tertiary-container": "#a649d5",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#005bc1",
+                        "outline-variant": "#c1c6d7",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001a41",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eeedf3",
+                        "surface-container-highest": "#e3e2e7",
+                        "on-secondary-fixed-variant": "#004d67",
+                        "surface-variant": "#e3e2e7",
+                        "surface-dim": "#dad9df",
+                        "inverse-primary": "#adc6ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "card-gap": "16px",
+                        "stack-sm": "12px",
+                        "base": "8px",
+                        "container-padding": "20px",
+                        "stack-md": "16px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "status-number": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F2F2F7;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24 font-body-lg">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex justify-between items-center px-container-padding h-14 transition-colors">
+<div class="flex items-center gap-3">
+<div onclick="window.location.href='pengaturan.html'" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer">
+    <img id="mobileHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_oF2gdU-OVYSEcsdBT6Y6pNCmeFA28WzAEzMIHd7kG0kQWOusYOnZST56v6uekgdl4F6rWOtVjCICDwb9Qex7pJQyHl7dLVg33bLQBrL5PWgThRdWOIWlOvG9ZciifKDnCMZ_vwTjRT8r25fGhhARK0B0SCHyJ0O14-5bsARrwEql_vvPsFLfBMLnaaRk830-ft1dwKdJxhhCJqKlXkC6lD_KSzKyHEM0fpSejhp85zdcxXcET6xIUXT9fgfWTNTLiWOZUaCLq5rH" alt="Avatar">
+</div>
+<span class="font-headline-md text-headline-md-mobile text-primary">MedLine</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<!-- Main Canvas -->
+<main class="pt-20 px-container-padding max-w-2xl mx-auto flex flex-col gap-card-gap">
+<!-- Greeting Section -->
+<section class="mt-4 mb-2">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Halo, Budi!</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Semoga harimu menyenangkan.</p>
+</section>
+<!-- Primary Action Card (Bento Style) -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-[#E5E5EA] relative overflow-hidden group">
+<!-- Subtle background pattern -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-secondary-container/20 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-500"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ambil Antrean</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-[200px]">Daftar antrean poliklinik atau laboratorium sekarang.</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">medical_services</span>
+</div>
+</div>
+<button onclick="window.location.href='ambil_antrean_pilih_poli.html'" class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm active:scale-[0.98] mt-2 min-h-[44px]">
+<span class="material-symbols-outlined">add_circle</span>
+                    Ambil Antrean Baru
+                </button>
+</div>
+</section>
+<!-- Current Queue Status -->
+<section class="flex flex-col gap-stack-sm mt-4">
+<h3 class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Antrean Saat Ini</h3>
+<div id="currentQueueSection" class="bg-surface-container-lowest rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-[#E5E5EA] min-h-[140px] border-dashed">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant mb-3 opacity-50">
+<span class="material-symbols-outlined">event_busy</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Belum ada antrean aktif.</p>
+<p class="font-body-md text-body-md text-outline text-sm mt-1">Silakan ambil antrean baru untuk memulai.</p>
+</div>
+</section>
+<!-- History Section (Empty State) -->
+<section class="flex flex-col gap-stack-sm mt-4">
+<h3 class="font-label-caps text-label-caps text-outline uppercase tracking-wider">Riwayat Antrean</h3>
+<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-[#E5E5EA] min-h-[200px]">
+<!-- Abstract placeholder graphic using CSS shapes -->
+<div class="relative w-24 h-24 mb-4">
+<div class="absolute inset-0 bg-secondary-container/20 rounded-2xl rotate-12"></div>
+<div class="absolute inset-0 bg-surface-container-highest rounded-2xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[40px] text-outline-variant">history</span>
+</div>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Belum Ada Riwayat</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[250px]">Riwayat kunjungan medis Anda akan muncul di sini setelah selesai.</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface md:hidden flex justify-around items-center h-16 px-4 pb-safe shadow-[0px_-4px_12px_rgba(0,0,0,0.05)]">
+<!-- Active Tab: Home -->
+<button onclick="window.location.href='dashboard_pasien.html'" class="flex flex-col items-center justify-center text-primary font-bold after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 hover:bg-surface-container-low transition-all active:scale-90 duration-200 w-full h-full">
+<span class="material-symbols-outlined fill text-[24px] mb-1">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<!-- Inactive Tab: My Queue -->
+<button onclick="window.location.href='barcode_status_antrean.html'" class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 duration-200 w-full h-full">
+<span class="material-symbols-outlined text-[24px] mb-1">confirmation_number</span>
+<span class="font-label-caps text-label-caps">My Queue</span>
+</button>
+<!-- Inactive Tab: History -->
+<button onclick="window.location.href='riwayat_antrean.html'" class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 duration-200 w-full h-full">
+<span class="material-symbols-outlined text-[24px] mb-1">history</span>
+<span class="font-label-caps text-label-caps">History</span>
+</button>
+<!-- Inactive Tab: Profile -->
+<button onclick="window.location.href='pengaturan.html'" class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 duration-200 w-full h-full">
+<span id="bottomNavProfileIcon" class="material-symbols-outlined text-[24px] mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profil</span>
+</button>
+</nav>
+<!-- Web Desktop Navigation Header Replacement for Bottom Nav -->
+<header class="hidden md:flex fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] justify-between items-center px-container-padding h-16 transition-colors">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div onclick="window.location.href='pengaturan.html'" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer">
+    <img id="desktopHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_oF2gdU-OVYSEcsdBT6Y6pNCmeFA28WzAEzMIHd7kG0kQWOusYOnZST56v6uekgdl4F6rWOtVjCICDwb9Qex7pJQyHl7dLVg33bLQBrL5PWgThRdWOIWlOvG9ZciifKDnCMZ_vwTjRT8r25fGhhARK0B0SCHyJ0O14-5bsARrwEql_vvPsFLfBMLnaaRk830-ft1dwKdJxhhCJqKlXkC6lD_KSzKyHEM0fpSejhp85zdcxXcET6xIUXT9fgfWTNTLiWOZUaCLq5rH" alt="Avatar">
+</div>
+<span class="font-headline-md text-headline-md text-primary font-extrabold tracking-tight">MedQueue</span>
+</div>
+<nav class="flex gap-6">
+<!-- Active Nav Item -->
+<a class="text-primary font-headline-md text-body-md flex flex-col justify-center relative after:absolute after:-bottom-5 after:left-0 after:w-full after:h-[3px] after:bg-primary after:rounded-t-md hover:bg-surface-container-high px-3 py-1 rounded transition-colors" href="dashboard_pasien.html">Home</a>
+<a class="text-on-surface-variant font-body-md text-body-md flex flex-col justify-center hover:bg-surface-container-high px-3 py-1 rounded transition-colors" href="barcode_status_antrean.html">My Queue</a>
+<a class="text-on-surface-variant font-body-md text-body-md flex flex-col justify-center hover:bg-surface-container-high px-3 py-1 rounded transition-colors" href="riwayat_antrean.html">History</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-150 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button onclick="logout()" class="flex items-center gap-2 hover:bg-surface-container-high px-3 py-2 rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Keluar</span>
+</button>
+</div>
+</header>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Load dynamic user name
+    const storedName = localStorage.getItem('userName');
+    if (storedName) {
+        document.querySelector('h1.font-headline-lg-mobile').innerText = `Halo, ${storedName}!`;
+    }
+    
+    // Load dynamic user avatar
+    const storedAvatar = localStorage.getItem('userAvatar');
+    if (storedAvatar) {
+        const mob = document.getElementById('mobileHeaderAvatar');
+        const desk = document.getElementById('desktopHeaderAvatar');
+        if (mob) mob.src = storedAvatar;
+        if (desk) desk.src = storedAvatar;
+        
+        const navIcon = document.getElementById('bottomNavProfileIcon');
+        if (navIcon) {
+            navIcon.outerHTML = `<img class="w-6 h-6 rounded-full object-cover mb-1 border border-primary/20" src="${storedAvatar}" alt="Avatar">`;
+        }
+    }
+    
+    // 2. Check active queue
+    const active = getActiveQueue();
+    if (active) {
+        const currentQueueSection = document.getElementById('currentQueueSection');
+        currentQueueSection.className = "bg-surface-container-lowest rounded-xl p-6 flex flex-col shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-primary/20 text-left justify-start items-stretch";
+        
+        // Define color badge based on status
+        let badgeColor = 'bg-surface-container-high text-on-surface-variant';
+        if (active.status === 'Dilayani') badgeColor = 'bg-green-100 text-green-700';
+        if (active.status === 'Hampir Tiba') badgeColor = 'bg-yellow-100 text-yellow-700';
+        if (active.status === 'Menunggu') badgeColor = 'bg-blue-100 text-blue-700';
+        
+        currentQueueSection.innerHTML = `
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <span class="font-label-caps text-xs text-outline uppercase tracking-wider">Poli Tujuan</span>
+                    <h4 class="font-headline-md text-on-surface mt-1">${active.poliName}</h4>
+                </div>
+                <span class="px-3 py-1 rounded-full text-xs font-semibold ${badgeColor}">${active.status}</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-outline-variant/30 pt-4 mt-2">
+                <div>
+                    <span class="font-label-caps text-xs text-outline uppercase tracking-wider">Nomor Anda</span>
+                    <div class="font-status-number text-primary text-3xl font-extrabold mt-1">${active.id}</div>
+                </div>
+                <button onclick="window.location.href='barcode_status_antrean.html'" class="bg-primary-fixed hover:bg-primary/20 text-primary font-semibold text-sm px-4 py-2 rounded-lg transition-colors">
+                    Lihat Detail / QR
+                </button>
+            </div>
+        `;
+    }
+});
+</script>
+</body></html>

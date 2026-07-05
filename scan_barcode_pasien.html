@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin Scanner - MedQueue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "on-secondary-fixed": "#001e2b",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "inverse-surface": "#2f3034",
+                        "on-surface": "#1a1b1f",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c1c6d7",
+                        "surface-bright": "#faf9fe",
+                        "primary-fixed-dim": "#adc6ff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e3e2e7",
+                        "on-surface-variant": "#414755",
+                        "on-primary-fixed": "#001a41",
+                        "surface": "#faf9fe",
+                        "on-tertiary-fixed": "#310048",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f1f0f5",
+                        "surface-container-low": "#f4f3f8",
+                        "secondary-fixed-dim": "#74d1ff",
+                        "tertiary-fixed": "#f6d9ff",
+                        "surface-tint": "#005bc1",
+                        "secondary": "#006687",
+                        "outline": "#717786",
+                        "on-background": "#1a1b1f",
+                        "on-primary-container": "#fefcff",
+                        "background": "#faf9fe",
+                        "tertiary": "#8a2bb9",
+                        "on-secondary-fixed-variant": "#004d67",
+                        "tertiary-container": "#a649d5",
+                        "on-secondary-container": "#005572",
+                        "secondary-fixed": "#c1e8ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#eeedf3",
+                        "inverse-primary": "#adc6ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-container": "#60cdff",
+                        "surface-container-highest": "#e3e2e7",
+                        "primary-container": "#0070eb",
+                        "primary": "#0058bc",
+                        "surface-dim": "#dad9df",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e7ed"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "stack-md": "16px",
+                        "container-padding": "20px",
+                        "base": "8px",
+                        "card-gap": "16px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "status-number": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "status-number": ["48px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .scanner-corner {
+            width: 40px;
+            height: 40px;
+            border-color: #0058bc;
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+        .corner-tl { top: 0; left: 0; border-top: 4px solid; border-left: 4px solid; border-top-left-radius: 12px; }
+        .corner-tr { top: 0; right: 0; border-top: 4px solid; border-right: 4px solid; border-top-right-radius: 12px; }
+        .corner-bl { bottom: 0; left: 0; border-bottom: 4px solid; border-left: 4px solid; border-bottom-left-radius: 12px; }
+        .corner-br { bottom: 0; right: 0; border-bottom: 4px solid; border-right: 4px solid; border-bottom-right-radius: 12px; }
+        
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-line {
+            width: 100%;
+            height: 2px;
+            background-color: #0070eb;
+            box-shadow: 0 0 10px #0070eb, 0 0 20px #0070eb;
+            position: absolute;
+            animation: scan 2.5s infinite linear;
+        }
+
+        .camera-overlay {
+            background: rgba(26, 27, 31, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased h-screen w-screen overflow-hidden flex flex-col md:flex-row">
+<!-- Desktop Navigation Drawer (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col h-full w-80 rounded-r-xl bg-surface-container dark:bg-inverse-surface shadow-[0px_8px_24px_rgba(0,0,0,0.12)] z-[60] py-4 fixed inset-y-0 left-0">
+<div class="px-container-padding pb-4 mb-4 border-b border-outline-variant">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Admin Panel</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Medical Center Alpha</p>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="text-on-surface-variant dark:text-outline-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-container-highest transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-body-lg text-body-lg">Staff Management</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-outline-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-container-highest transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">settings_applications</span>
+<span class="font-body-lg text-body-lg">Facility Settings</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-outline-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-container-highest transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-lg text-body-lg">Reports</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-outline-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-container-highest transition-colors rounded-full" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-lg text-body-lg">Help &amp; Support</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 relative md:ml-80 h-full w-full bg-black flex flex-col">
+<!-- Top App Bar for Mobile -->
+<header class="md:hidden w-full top-0 sticky bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex items-center justify-between px-container-padding h-14 z-50">
+<button class="text-on-surface-variant p-2 -ml-2 active:scale-95 duration-100 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MedQueue</h1>
+<button class="text-on-surface-variant p-2 -mr-2 active:scale-95 duration-100 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<!-- Camera View Area -->
+<div class="relative flex-1 w-full overflow-hidden flex items-center justify-center">
+<!-- Simulated Camera Background (Dark/Blurred to simulate camera out of focus or waiting) -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-40" data-alt="A blurred, dark view of a medical clinic waiting room, simulating a camera feed looking for a barcode. Soft overhead clinical lighting. Modern, clean aesthetic, mostly greys and whites with subtle blue tints." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3mIbj7T8tAqmeUpMq6EMJajb0b2frO3Ws4e2Nw42YcS9dRBah--ituESfq2zazXpyRbPQ7sNfAe27T_cP2qrGvPopjMwbG1pTHnF8XyRYFp1p0r5ZMmolRMvgN16svhDlIjw47uheMU8LWjPdnTC2Jsnh7ljTodHw7hAcP98tcnMmd4rFHRKXp6Ft8Qh-od4H39invGByOKNFsnS0V0VOBT2Tt22n6SOf-nDcCTSYY7MUMPZQo1gHSjxDNPX8r4cOTBjv_mqaF1Rw')"></div>
+<!-- Scanner Overlay -->
+<div class="absolute inset-0 camera-overlay flex flex-col items-center justify-center pointer-events-none">
+<!-- Scanning Frame -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 mb-stack-lg z-10 pointer-events-auto">
+<!-- Corners -->
+<div class="scanner-corner corner-tl"></div>
+<div class="scanner-corner corner-tr"></div>
+<div class="scanner-corner corner-bl"></div>
+<div class="scanner-corner corner-br"></div>
+<!-- Scan Line Animation -->
+<div class="scan-line"></div>
+<!-- Clear Center Area (Simulated by the overlay having a cutout if we used clip-path, but here we just rely on visual cues) -->
+<div class="w-full h-full border border-outline/30 rounded-lg"></div>
+</div>
+<!-- Status & Instructions -->
+<div class="text-center px-container-padding z-10 pointer-events-auto">
+<div class="inline-flex items-center gap-2 bg-surface-container-low/20 backdrop-blur-md text-on-primary rounded-full px-4 py-2 mb-stack-md">
+<span class="material-symbols-outlined text-[18px] animate-pulse">qr_code_scanner</span>
+<span class="font-label-caps text-label-caps tracking-wider">Scanning...</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-primary mb-2">Arahkan kamera ke barcode pasien</h2>
+<p class="font-body-md text-body-md text-outline-variant max-w-sm mx-auto">Pastikan barcode berada di dalam kotak area pemindaian untuk hasil yang akurat.</p>
+</div>
+</div>
+<!-- Controls (Flashlight & Manual Entry) -->
+<div class="absolute bottom-24 md:bottom-12 w-full px-container-padding flex justify-center gap-stack-lg z-20">
+<button class="w-14 h-14 rounded-full bg-surface/10 backdrop-blur-md border border-outline/30 flex items-center justify-center text-on-primary hover:bg-surface/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flashlight_on</span>
+</button>
+<button class="h-14 px-6 rounded-full bg-surface/10 backdrop-blur-md border border-outline/30 flex items-center justify-center gap-2 text-on-primary hover:bg-surface/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined">keyboard</span>
+<span class="font-body-md text-body-md font-semibold">Input Manual</span>
+</button>
+</div>
+</div>
+<!-- Mobile Bottom Nav Bar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface shadow-[0px_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 px-4 pb-safe border-t border-outline-variant/30">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all w-full h-full rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary relative after:content-[''] after:w-1 after:h-1 after:bg-primary after:rounded-full after:mt-1 hover:bg-surface-container-low transition-all w-full h-full rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-caps text-label-caps">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all w-full h-full rounded-lg" href="#">
+<span class="material-symbols-outlined mb-1">group</span>
+<span class="font-label-caps text-label-caps">Patients</span>
+</a>
+</nav>
+</main>
+<!-- Success Modal Preview (Hidden by default, shown for demonstration structure) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center px-container-padding bg-on-surface/50 backdrop-blur-sm hidden" id="success-modal">
+<div class="bg-surface rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] w-full max-w-md overflow-hidden animate-[slideUp_0.3s_ease-out]">
+<div class="bg-primary px-container-padding py-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-on-primary/20 flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-primary">Scan Berhasil</h3>
+<p class="font-label-caps text-label-caps text-primary-fixed-dim opacity-90">Data Pasien Ditemukan</p>
+</div>
+</div>
+<div class="p-container-padding space-y-card-gap">
+<div class="bg-surface-container-low rounded-lg p-4 flex gap-4 items-center">
+<div id="scanPatientAvatar" class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-lg font-bold">
+                        AB
+                    </div>
+<div>
+<h4 id="scanPatientName" class="font-headline-md text-headline-md text-on-surface">Ahmad Budi Santoso</h4>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">id_card</span> RM-2938471
+                        </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="border border-outline-variant/50 rounded-lg p-3 text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Nomor Antrean</p>
+<p id="scanQueueId" class="font-status-number text-status-number text-primary">A12</p>
+</div>
+<div class="border border-outline-variant/50 rounded-lg p-3 flex flex-col justify-center items-center text-center">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Poliklinik Tujuan</p>
+<p id="scanPoliName" class="font-headline-md text-headline-md text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary">stethoscope</span> Umum
+                        </p>
+</div>
+</div>
+</div>
+<div class="p-container-padding pt-0 flex gap-4">
+<button class="flex-1 py-3 px-4 rounded-full border border-outline text-primary font-body-md font-semibold hover:bg-surface-container-low transition-colors" onclick="window.location.href='dashboard_admin_utama.html'">
+                    Batal
+                </button>
+<button id="confirmArrivalBtn" class="flex-1 py-3 px-4 rounded-full bg-primary text-on-primary font-body-md font-semibold hover:bg-primary/90 transition-colors shadow-md">
+                    Konfirmasi Kehadiran
+                </button>
+</div>
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Simulate camera scanning delay
+    setTimeout(() => {
+        const db = getQueueDB();
+        
+        // Find a patient that is currently 'Menunggu'
+        const waitingPatient = db.queues.find(q => q.status === 'Menunggu');
+        
+        if (waitingPatient) {
+            // Populate modal fields
+            document.getElementById('scanPatientName').innerText = waitingPatient.patientName;
+            
+            // Get initials for avatar
+            const initials = waitingPatient.patientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+            document.getElementById('scanPatientAvatar').innerText = initials;
+            
+            document.getElementById('scanQueueId').innerText = waitingPatient.id;
+            
+            const poliShort = waitingPatient.poliName.replace('Poli ', '');
+            document.getElementById('scanPoliName').innerHTML = `
+                <span class="material-symbols-outlined text-secondary">stethoscope</span> ${poliShort}
+            `;
+            
+            // Show modal
+            document.getElementById('success-modal').classList.remove('hidden');
+            
+            // Connect confirm button
+            document.getElementById('confirmArrivalBtn').addEventListener('click', () => {
+                // Update status to 'Hampir Tiba'
+                updateQueueStatus(waitingPatient.id, 'Hampir Tiba');
+                
+                // Redirect to Kelola Antrean for this poli
+                window.location.href = `kelola_daftar_antrean.html?poli=${poliShort}`;
+            });
+        } else {
+            alert('Tidak ada antrean berstatus "Menunggu" di database saat ini. Silakan daftarkan pasien baru terlebih dahulu di sisi pasien.');
+            window.location.href = 'dashboard_admin_utama.html';
+        }
+    }, 2500);
+});
+</script>
+</body></html>

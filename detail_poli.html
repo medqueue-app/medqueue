@@ -1,0 +1,274 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Clinic Details - MedQueue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#414755",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "surface-dim": "#dad9df",
+                        "outline-variant": "#c1c6d7",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "tertiary": "#8a2bb9",
+                        "on-tertiary-container": "#fffbff",
+                        "primary": "#0058bc",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f8",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fefcff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#005572",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#004d67",
+                        "on-background": "#1a1b1f",
+                        "surface-container-highest": "#e3e2e7",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#74d1ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#f6d9ff",
+                        "surface-tint": "#005bc1",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#001a41",
+                        "on-secondary-fixed": "#001e2b",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeedf3",
+                        "secondary-fixed": "#c1e8ff",
+                        "on-surface": "#1a1b1f",
+                        "outline": "#717786",
+                        "surface-bright": "#faf9fe",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006687",
+                        "background": "#faf9fe",
+                        "surface-variant": "#e3e2e7",
+                        "secondary-container": "#60cdff",
+                        "tertiary-container": "#a649d5",
+                        "on-tertiary-fixed": "#310048",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e9e7ed",
+                        "inverse-on-surface": "#f1f0f5",
+                        "primary-container": "#0070eb",
+                        "inverse-surface": "#2f3034",
+                        "surface": "#faf9fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "container-padding": "20px",
+                        "stack-sm": "12px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "status-number": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "status-number": ["48px", { "lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F2F2F7; /* Level 0 Canvas */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md antialiased pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface shadow-sm fixed top-0 w-full z-50 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center px-container-padding h-14 w-full">
+<button onclick="window.location.href='ambil_antrean_pilih_poli.html'" class="text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 -ml-2 rounded-full active:scale-95 duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 id="poliTitle" class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim absolute left-1/2 -translate-x-1/2">Poli Umum</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 px-container-padding flex flex-col gap-card-gap max-w-2xl mx-auto"><section class="flex flex-col gap-3">
+  <div class="relative flex items-center">
+    <span class="material-symbols-outlined absolute left-3 text-outline" data-icon="search">search</span>
+    <input type="text" placeholder="Cari nama dokter..." class="w-full bg-surface-container-low border-none rounded-xl py-3 pl-10 pr-4 text-body-md text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary transition-all">
+  </div>
+  <div class="flex gap-2 overflow-x-auto pb-2 -mx-container-padding px-container-padding no-scrollbar">
+    <button class="px-4 py-1.5 bg-primary text-on-primary rounded-full font-body-md text-sm shrink-0">Semua</button>
+    <button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant border border-surface-container-highest rounded-full font-body-md text-sm shrink-0 hover:bg-surface-container-high transition-colors">Umum</button>
+    <button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant border border-surface-container-highest rounded-full font-body-md text-sm shrink-0 hover:bg-surface-container-high transition-colors">Gigi</button>
+    <button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant border border-surface-container-highest rounded-full font-body-md text-sm shrink-0 hover:bg-surface-container-high transition-colors">Anak</button>
+    <button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant border border-surface-container-highest rounded-full font-body-md text-sm shrink-0 hover:bg-surface-container-high transition-colors">Kandungan</button>
+    <button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant border border-surface-container-highest rounded-full font-body-md text-sm shrink-0 hover:bg-surface-container-high transition-colors">Mata</button>
+  </div>
+</section>
+<!-- Doctor Profile Card -->
+<section id="doctorSarah" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex items-center gap-4">
+<img class="w-16 h-16 rounded-full object-cover shrink-0 border-2 border-surface-container-high" data-alt="A professional headshot of a female doctor in her 40s wearing a crisp white medical coat over a light blue blouse. The lighting is bright, soft, and even, typical of a modern clinical environment, conveying warmth and reassurance. The background is a slightly blurred, clean, and modern hospital corridor or office setting with cool, calming blue and white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQJw-zcOMQvAj52gR6Q5a6KgraTg7FmWCyG509ZFJZLWbuWE_ms4oK0TYOfB5byc1PjmYRxO4YGE2lV8G_3Qbm82oZu0n3gnIVbZ1Z9JdHFp3zEm2rFZd8Y812gfH4BaZtV-QIjyz7UiffKBAXfOq5GBsCg1wUkyqM80qIQLL9eFwYTVOIWlcEsyAARz19kTCUcjKGBT0vFN0hHekNSQ2-3eXRxb2JHPF588uj0nA_7JegHczehHYOSYUANeC63XPi78IqVE6w_w1P">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Dr. Sarah Jenkins</h2>
+<p id="sarahSpecialty" class="font-body-md text-body-md text-secondary">General Practitioner</p>
+</div>
+</section><section id="doctorAmanda" class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex flex-col gap-4">
+  <div class="flex items-center gap-4">
+    <img class="w-16 h-16 rounded-full object-cover shrink-0 border-2 border-surface-container-high" data-alt="A professional headshot of a female pediatrician in her late 30s, smiling warmly. She is wearing a white medical coat over a soft pink blouse. The background is a bright, child-friendly clinic with colorful wall decals." src="https://images.unsplash.com/photo-1559839734-2b71f153678f?auto=format&amp;fit=crop&amp;q=80&amp;w=200&amp;h=200">
+    <div>
+      <h2 class="font-headline-md text-headline-md text-on-surface mb-1">Dr. Amanda Putri, Sp.A</h2>
+      <p class="font-body-md text-body-md text-secondary">Pediatrician</p>
+    </div>
+  </div>
+  <div class="border-t border-surface-container-high pt-3">
+    <p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Doctor's Hours</p>
+    <div class="flex flex-col gap-1">
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Mon - Fri</span>
+        <span class="text-on-surface font-semibold">09:00 - 15:00</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-on-surface-variant">Saturday</span>
+        <span class="text-on-surface font-semibold">09:00 - 12:00</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Queue Status Panel (Bento Style) -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Current Status -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex flex-col justify-between min-h-[120px] relative overflow-hidden border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Current Number</span>
+</div>
+<div id="currentCallingNumber" class="font-status-number text-status-number text-on-surface">
+                    A-024
+                </div>
+</div>
+<!-- Your Queue (Conditional/Empty State Example) -->
+<div class="bg-surface-container-low rounded-xl p-4 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex flex-col justify-center items-center min-h-[120px] text-center border border-dashed border-outline-variant">
+<span class="material-symbols-outlined text-outline mb-2" data-icon="confirmation_number">confirmation_number</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Your Number</p>
+<p class="font-body-md text-body-md text-outline">Not joined yet</p>
+</div>
+</section>
+<!-- Operational Hours -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+                Operational Hours
+            </h3>
+<ul class="flex flex-col gap-3">
+<li class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Monday - Friday</span>
+<span class="text-on-surface font-semibold">08:00 - 16:00</span>
+</li>
+<li class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Saturday</span>
+<span class="text-on-surface font-semibold">08:00 - 13:00</span>
+</li>
+<li class="flex justify-between items-center font-body-md text-body-md text-error">
+<span class="">Sunday</span>
+<span class="font-semibold">Closed</span>
+</li>
+</ul>
+</section>
+<!-- Facilities & Services -->
+<section class="bg-surface-container-lowest rounded-xl p-5 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="medical_services">medical_services</span>
+                Services Provided
+            </h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-body-md text-sm border border-surface-container-highest">General Checkup</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-body-md text-sm border border-surface-container-highest">Prescriptions</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-body-md text-sm border border-surface-container-highest">Basic Lab Tests</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-body-md text-sm border border-surface-container-highest">Vaccinations</span>
+</div>
+</section>
+</main>
+<!-- Floating Action Area (Bottom) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(0,0,0,0.05)] p-container-padding z-40 pb-safe">
+<div class="max-w-2xl mx-auto">
+<button id="takeQueueBtn" class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-4 rounded-xl shadow-md hover:bg-primary-container active:scale-95 transition-all duration-200 flex justify-center items-center gap-2">
+                Ambil Antrean
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let poli = urlParams.get('poli') || 'Umum';
+    
+    // Normalize casing
+    poli = poli.charAt(0).toUpperCase() + poli.slice(1);
+    const fullPoliName = `Poli ${poli}`;
+    
+    // Update Title Header
+    document.getElementById('poliTitle').innerText = fullPoliName;
+    document.title = `${fullPoliName} - MedQueue`;
+    
+    // Customize doctor view based on selected Polyclinic
+    const docSarah = document.getElementById('doctorSarah');
+    const docAmanda = document.getElementById('doctorAmanda');
+    
+    if (poli === 'Umum') {
+        docSarah.style.display = 'flex';
+        docAmanda.style.display = 'none';
+        document.getElementById('sarahSpecialty').innerText = 'General Practitioner';
+    } else if (poli === 'Anak') {
+        docSarah.style.display = 'none';
+        docAmanda.style.display = 'flex';
+    } else if (poli === 'Gigi') {
+        docSarah.style.display = 'flex';
+        docAmanda.style.display = 'none';
+        docSarah.querySelector('h2').innerText = 'Dr. Ronald Cooper';
+        document.getElementById('sarahSpecialty').innerText = 'Dentist';
+        docSarah.querySelector('img').src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=200&h=200';
+    }
+    
+    // Show current calling number for this Poli
+    const db = getQueueDB();
+    const callingNum = db.currentCalling[fullPoliName] || 'None';
+    document.getElementById('currentCallingNumber').innerText = callingNum;
+    
+    // Connect take queue button
+    document.getElementById('takeQueueBtn').addEventListener('click', () => {
+        window.location.href = `konfirmasi_antrean.html?poli=${poli}`;
+    });
+});
+</script>
+</body></html>

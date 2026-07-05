@@ -1,0 +1,248 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedQueue Admin - Login</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS Setup -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#faf9fe",
+                        "surface-container-highest": "#e3e2e7",
+                        "inverse-surface": "#2f3034",
+                        "background": "#faf9fe",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-background": "#1a1b1f",
+                        "tertiary": "#8a2bb9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7201a2",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#310048",
+                        "on-primary-fixed": "#001a41",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#004493",
+                        "primary": "#0058bc",
+                        "surface-dim": "#dad9df",
+                        "surface-container": "#eeedf3",
+                        "primary-container": "#0070eb",
+                        "outline-variant": "#c1c6d7",
+                        "secondary": "#006687",
+                        "on-secondary-container": "#005572",
+                        "inverse-primary": "#adc6ff",
+                        "tertiary-container": "#a649d5",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1b1f",
+                        "surface": "#faf9fe",
+                        "inverse-on-surface": "#f1f0f5",
+                        "on-surface-variant": "#414755",
+                        "secondary-fixed-dim": "#74d1ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed": "#c1e8ff",
+                        "surface-variant": "#e3e2e7",
+                        "on-secondary-fixed": "#001e2b",
+                        "on-secondary-fixed-variant": "#004d67",
+                        "tertiary-fixed": "#f6d9ff",
+                        "surface-container-high": "#e9e7ed",
+                        "on-primary-container": "#fefcff",
+                        "tertiary-fixed-dim": "#e8b3ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f4f3f8",
+                        "secondary-container": "#60cdff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "surface-tint": "#005bc1",
+                        "outline": "#717786"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "stack-lg": "24px",
+                        "container-padding": "20px",
+                        "stack-sm": "12px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "status-number": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Input Utilities */
+        .input-filled {
+            @apply bg-surface-container-high rounded-t-DEFAULT border-b-2 border-outline-variant transition-colors duration-200 focus-within:border-primary;
+        }
+        .input-floating-label {
+            @apply absolute left-4 top-2 font-label-caps text-label-caps text-on-surface-variant transition-all duration-200 pointer-events-none;
+        }
+        .input-field {
+            @apply w-full bg-transparent border-none px-4 pt-6 pb-2 font-body-lg text-body-lg text-on-surface focus:ring-0 placeholder-transparent;
+        }
+        
+        /* Peer interaction for floating labels */
+        .input-field:placeholder-shown ~ .input-floating-label {
+            @apply top-4 font-body-md text-body-md text-on-surface-variant;
+        }
+        .input-field:focus ~ .input-floating-label {
+            @apply top-2 font-label-caps text-label-caps text-primary;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container font-sans">
+<!-- Left Panel: Branding / Visual (Hidden on mobile) -->
+<div class="hidden lg:flex lg:w-1/2 relative bg-surface-container flex-col justify-between p-12">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="A pristine, highly modern hospital corridor viewed from a central perspective. The architecture features clean, sweeping curves, abundant natural light filtering through large glass panels, and subtle high-tech interfaces integrated into smooth white walls. The color palette emphasizes pristine whites, soft clinical silvers, and gentle accents of medical blue. The mood is highly professional, calm, reassuring, and systemically organized, perfectly reflecting a state-of-the-art medical facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUYXDu-W3PLXfgfRFvaRCOYCRJCRA11fL7-lJ1qKqI67E6iTnUMIqukdyljEBXV99uA0Gfp3zWIDf8hkqzAzoU1Z5AD5t6icYfVLjOjnKPnbvWLjuaj35XsbF8TxSsjb4lkXUctlvWxhiKJs3z95riYnP8cr5IPkYcBkEs5SHZ-EpBY22z9TQMj8NSvyz7aDUOwVyKFwjNMOwLvUyDrnWbAZ89c0HPLRzlKAWYJGvBEUrUdihFnmgtbuDCCkFhGEBHR9G9509wes_s">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent opacity-90"></div>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<div class="relative z-10 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1; font-size: 32px;">health_and_safety</span>
+<span class="font-headline-md text-headline-md text-on-surface">MedQueue <span class="font-light">System</span></span>
+</div>
+<div class="relative z-10 max-w-lg mb-12">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-6">Manajemen antrean klinis yang sistematis dan efisien.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Platform terpusat untuk memantau, mengelola, dan mengoptimalkan aliran pasien di seluruh fasilitas kesehatan Anda.</p>
+</div>
+</div>
+<!-- Right Panel: Login Canvas -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-container-padding sm:p-12 relative">
+<!-- Subtle background pattern for right panel on desktop -->
+<div class="absolute inset-0 z-0 hidden lg:block opacity-30" style="background-image: radial-gradient(#c1c6d7 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="w-full max-w-md relative z-10 flex flex-col gap-8">
+<!-- Mobile Logo / Header -->
+<div class="flex flex-col items-center text-center lg:items-start lg:text-left mb-4">
+<div class="lg:hidden flex items-center justify-center w-16 h-16 rounded-xl bg-primary-container/20 text-primary mb-6">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg lg:text-[40px] text-on-surface mb-2">MedQueue Admin</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Masuk untuk mengakses dasbor manajemen.</p>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-6 sm:p-8 flex flex-col gap-6">
+<form class="flex flex-col gap-5">
+<!-- Input: NIP / Email -->
+<div class="relative input-filled">
+<input autocomplete="username" class="input-field peer" id="identifier" placeholder="NIP / Email" type="text">
+<label class="input-floating-label" for="identifier">NIP / Email</label>
+</div>
+<!-- Input: Password -->
+<div class="relative input-filled">
+<input autocomplete="current-password" class="input-field peer pr-12" id="password" placeholder="Password" type="password">
+<label class="input-floating-label" for="password">Password</label>
+<!-- Toggle Visibility Button -->
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors focus:outline-none" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="visibility-icon">visibility</span>
+</button>
+</div>
+<!-- Additional Actions -->
+<div class="flex items-center justify-between mt-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="w-5 h-5 border-2 border-outline-variant rounded-sm bg-surface-container-lowest checked:bg-primary checked:border-primary transition-colors appearance-none peer" type="checkbox">
+<span class="material-symbols-outlined absolute inset-0 text-on-primary pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" style="font-size: 20px;">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Ingat saya</span>
+</label>
+<a class="font-body-md text-body-md text-primary font-semibold hover:text-primary-container transition-colors" href="#">Lupa Password?</a>
+</div>
+<!-- Primary Action -->
+<button onclick="loginAdmin(event)" class="mt-4 w-full bg-primary text-on-primary font-label-caps text-label-caps tracking-widest uppercase py-4 rounded-full shadow-md hover:bg-primary-container hover:shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+<span>Masuk</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Footer / Secure Badge -->
+<div class="flex flex-col items-center justify-center gap-2 text-outline text-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 16px;">lock</span>
+<span class="font-label-caps text-label-caps">Koneksi terenkripsi klinis</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-2">
+Belum punya akun? <a class="text-primary font-semibold hover:underline" href="daftar_admin.html">Daftar Admin</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Inline script for password toggle micro-interaction -->
+<script>
+        function togglePassword() {
+            const pwdInput = document.getElementById('password');
+            const icon = document.getElementById('visibility-icon');
+            
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        function loginAdmin(event) {
+            event.preventDefault();
+            const idVal = document.getElementById('identifier').value;
+            const pwdVal = document.getElementById('password').value;
+            
+            if (!idVal || !pwdVal) {
+                alert('Harap isi ID/NIP/Email dan Password!');
+                return;
+            }
+            
+            // Check localStorage
+            const savedEmail = localStorage.getItem('adminEmail');
+            const savedNip = localStorage.getItem('adminNip');
+            const savedPwd = localStorage.getItem('adminPassword');
+            const savedName = localStorage.getItem('adminName') || 'Dr. Sarah Jenkins';
+            
+            if ((savedEmail && idVal === savedEmail) || (savedNip && idVal === savedNip)) {
+                if (pwdVal === savedPwd) {
+                    localStorage.setItem('userRole', 'admin');
+                    localStorage.setItem('adminName', savedName);
+                    window.location.href = 'dashboard_admin_utama.html';
+                    return;
+                } else {
+                    alert('Password salah!');
+                    return;
+                }
+            }
+            
+            // Fallback for demo: if no registered admin matches, log in with entered identifier as admin name
+            localStorage.setItem('userRole', 'admin');
+            localStorage.setItem('adminName', idVal.includes('@') ? idVal.split('@')[0] : idVal);
+            window.location.href = 'dashboard_admin_utama.html';
+        }
+    </script>
+</body></html>

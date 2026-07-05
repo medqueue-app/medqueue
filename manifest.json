@@ -1,0 +1,17 @@
+{
+  "name": "MedQueue - Sistem Antrean Pasien Pintar",
+  "short_name": "MedQueue",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf9fe",
+  "theme_color": "#0058bc",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "medqueue_logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
