@@ -1,136 +1,138 @@
-<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<!DOCTYPE html><html lang="id" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MedQueue - Patient Registration</title>
+<title>MedQueue - Patient Login</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface": "#faf9fe","surface-bright": "#faf9fe","secondary-fixed": "#c1e8ff","tertiary": "#8a2bb9","surface-container-low": "#f4f3f8","surface-container-high": "#e9e7ed","primary-fixed-dim": "#adc6ff","outline": "#717786","on-primary-container": "#fefcff","surface-container-lowest": "#ffffff","on-tertiary-container": "#fffbff","on-primary-fixed-variant": "#004493","primary-fixed": "#d8e2ff","inverse-surface": "#2f3034","inverse-on-surface": "#f1f0f5","on-secondary": "#ffffff","secondary-container": "#60cdff","on-surface": "#1a1b1f","on-secondary-container": "#005572","primary-container": "#0070eb","on-tertiary-fixed-variant": "#7201a2","tertiary-fixed-dim": "#e8b3ff","on-error": "#ffffff","on-surface-variant": "#414755","on-secondary-fixed": "#001e2b","tertiary-fixed": "#f6d9ff","primary": "#0058bc","on-tertiary-fixed": "#310048","secondary-fixed-dim": "#74d1ff","on-background": "#1a1b1f","background": "#faf9fe","secondary": "#006687","tertiary-container": "#a649d5","on-primary": "#ffffff","surface-tint": "#005bc1","outline-variant": "#c1c6d7","error": "#ba1a1a","error-container": "#ffdad6","on-primary-fixed": "#001a41","on-tertiary": "#ffffff","surface-container": "#eeedf3","surface-container-highest": "#e3e2e7","on-secondary-fixed-variant": "#004d67","surface-variant": "#e3e2e7","surface-dim": "#dad9df","inverse-primary": "#adc6ff","on-error-container": "#93000a"
-            },
-            "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
-            "spacing": {"stack-lg": "24px","card-gap": "16px","stack-sm": "12px","base": "8px","container-padding": "20px","stack-md": "16px"},
-            "fontFamily": {"body-lg": ["Inter"],"status-number": ["Inter"],"headline-md": ["Inter"],"headline-lg": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],"label-caps": ["Inter"]},
-            "fontSize": {
-                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
-                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9fe","surface-bright": "#faf9fe","secondary-fixed": "#c1e8ff","tertiary": "#8a2bb9","surface-container-low": "#f4f3f8","surface-container-high": "#e9e7ed","primary-fixed-dim": "#adc6ff","outline": "#717786","on-primary-container": "#fefcff","surface-container-lowest": "#ffffff","on-tertiary-container": "#fffbff","on-primary-fixed-variant": "#004493","primary-fixed": "#d8e2ff","inverse-surface": "#2f3034","inverse-on-surface": "#f1f0f5","on-secondary": "#ffffff","secondary-container": "#60cdff","on-surface": "#1a1b1f","on-secondary-container": "#005572","primary-container": "#0070eb","on-tertiary-fixed-variant": "#7201a2","tertiary-fixed-dim": "#e8b3ff","on-error": "#ffffff","on-surface-variant": "#414755","on-secondary-fixed": "#001e2b","tertiary-fixed": "#f6d9ff","primary": "#0058bc","on-tertiary-fixed": "#310048","secondary-fixed-dim": "#74d1ff","on-background": "#1a1b1f","background": "#faf9fe","secondary": "#006687","tertiary-container": "#a649d5","on-primary": "#ffffff","surface-tint": "#005bc1","outline-variant": "#c1c6d7","error": "#ba1a1a","error-container": "#ffdad6","on-primary-fixed": "#001a41","on-tertiary": "#ffffff","surface-container": "#eeedf3","surface-container-highest": "#e3e2e7","on-secondary-fixed-variant": "#004d67","surface-variant": "#e3e2e7","surface-dim": "#dad9df","inverse-primary": "#adc6ff","on-error-container": "#93000a"
+                    },
+                    "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+                    "spacing": {"stack-lg": "24px","card-gap": "16px","stack-sm": "12px","base": "8px","container-padding": "20px","stack-md": "16px"},
+                    "fontFamily": {"body-lg": ["Inter"],"status-number": ["Inter"],"headline-md": ["Inter"],"headline-lg": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],"label-caps": ["Inter"]},
+                    "fontSize": {
+                        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                }
             }
-          }
         }
-      }
     </script>
 <style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      }
-      .input-field-focus:focus-within label {
-        transform: translateY(-12px) scale(0.85);
-        color: #0058bc;
-      }
-      .input-field-focus input:focus {
-        border-color: #0058bc;
-        outline: none;
-        box-shadow: none;
-      }
-      .input-has-value label {
-        transform: translateY(-12px) scale(0.85);
-      }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body-lg min-h-screen antialiased flex flex-col md:flex-row">
-<header class="fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] md:hidden">
-<div class="flex justify-center items-center px-container-padding h-14 w-full relative">
-<button onclick="window.location.href='login_pasien.html'" class="absolute left-container-padding text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150 flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
-</button>
-<div class="font-headline-md text-headline-md-mobile text-primary">MedLine</div>
+<body class="bg-surface text-on-surface font-body-lg min-h-screen flex items-center justify-center p-4">
+<main class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] overflow-hidden flex flex-col">
+<div class="relative h-48 w-full bg-primary-fixed-dim flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-multiply" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMhouUyxud4enyLQF6X0yWVCtZQK9NsGrIbe1juMamTqurQhuxt5FwgZc1Tr6PapNdcGU3CjkQQNUT426HvVIRf4n4iZWUPlTVDSXrX1cOcCxpEjqdGdHglcmdmc3pCxp6uBuJpxfNnoHgltwysnZrCmbL4Jo0pASaoWQaSHFqtqNauIcZV7z-88ejmks9xXFJWsaR4QqrtLw_cLE4b0yzmtZmLy9_UlcseZ4FZ_nz2FsNXq7DKs9JPXW6xU0Qipm-Lun2mvQBl_0Z')"></div>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-2" data-icon="local_hospital">local_hospital</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">MedLine</h1>
 </div>
-</header>
-<main class="flex-1 flex flex-col justify-center items-center px-container-padding pt-20 pb-safe md:py-12 w-full max-w-md mx-auto">
-<div class="w-full text-center mb-stack-lg">
-<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-2">Create Account</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">Register to manage your medical queues effortlessly.</p>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent z-0"></div>
 </div>
-<div class="w-full bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] p-container-padding md:p-8 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed rounded-bl-full opacity-20 -z-0"></div>
-<form class="space-y-stack-md relative z-10" id="registrationForm">
-<div class="relative bg-[#E9E9EB] rounded-t-lg border-b-2 border-outline-variant input-field-focus transition-colors duration-200">
-<label class="absolute left-4 top-3 text-on-surface-variant font-body-md text-body-md transition-all duration-200 pointer-events-none origin-left" for="fullName">Full Name</label>
-<input class="w-full bg-transparent border-none pt-6 pb-2 px-4 font-body-md text-body-md text-on-surface focus:ring-0" id="fullName" name="fullName" oninput="this.parentElement.classList.toggle('input-has-value', this.value.length > 0)" required="" type="text">
+<div class="p-container-padding flex flex-col gap-stack-lg relative z-20 -mt-6 bg-surface-container-lowest rounded-t-xl">
+<div class="text-center mb-2">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Selamat Datang</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Masuk untuk melihat status antrean Anda</p>
 </div>
-<div class="relative bg-[#E9E9EB] rounded-t-lg border-b-2 border-outline-variant input-field-focus transition-colors duration-200">
-<label class="absolute left-4 top-3 text-on-surface-variant font-body-md text-body-md transition-all duration-200 pointer-events-none origin-left" for="phone">Phone Number</label>
-<input class="w-full bg-transparent border-none pt-6 pb-2 px-4 font-body-md text-body-md text-on-surface focus:ring-0" id="phone" name="phone" oninput="this.parentElement.classList.toggle('input-has-value', this.value.length > 0)" required="" type="tel">
+<form action="#" class="flex flex-col gap-stack-md" method="POST">
+<div class="relative">
+<label class="sr-only" for="identifier">Email atau Nomor Telepon</label>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="person">person</span>
 </div>
-<div class="relative bg-[#E9E9EB] rounded-t-lg border-b-2 border-outline-variant input-field-focus transition-colors duration-200">
-<label class="absolute left-4 top-3 text-on-surface-variant font-body-md text-body-md transition-all duration-200 pointer-events-none origin-left" for="email">Email Address</label>
-<input class="w-full bg-transparent border-none pt-6 pb-2 px-4 font-body-md text-body-md text-on-surface focus:ring-0" id="email" name="email" oninput="this.parentElement.classList.toggle('input-has-value', this.value.length > 0)" required="" type="email">
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-highest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-DEFAULT font-body-md text-body-md text-on-surface transition-colors" id="identifier" name="identifier" placeholder="Email atau Nomor Telepon" required="" type="text">
 </div>
-<div class="relative bg-[#E9E9EB] rounded-t-lg border-b-2 border-outline-variant input-field-focus transition-colors duration-200">
-<label class="absolute left-4 top-3 text-on-surface-variant font-body-md text-body-md transition-all duration-200 pointer-events-none origin-left" for="password">Password</label>
-<input class="w-full bg-transparent border-none pt-6 pb-2 px-4 pr-12 font-body-md text-body-md text-on-surface focus:ring-0" id="password" name="password" oninput="this.parentElement.classList.toggle('input-has-value', this.value.length > 0)" required="" type="password">
-<button aria-label="Toggle password visibility" class="absolute right-3 top-3 text-on-surface-variant hover:text-primary transition-colors focus:outline-none" type="button">
-<span class="material-symbols-outlined" data-icon="visibility_off">visibility_off</span>
+<div class="relative">
+<label class="sr-only" for="password">Kata Sandi</label>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+<input class="w-full pl-10 pr-12 py-3 bg-surface-container-highest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 rounded-t-DEFAULT font-body-md text-body-md text-on-surface transition-colors" id="password" name="password" placeholder="Kata Sandi" required="" type="password">
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
 </button>
 </div>
-<div class="pt-stack-sm flex flex-col gap-4">
+<div class="flex justify-end mt-1">
+<a class="font-body-md text-body-md text-primary hover:text-primary-container transition-colors" href="#">Lupa Kata Sandi?</a>
+</div>
 <button onclick="event.preventDefault(); 
-    var nama = document.getElementById('fullName').value;
-    var phone = document.getElementById('phone').value;
-    var email = document.getElementById('email').value;
-    var pass = document.getElementById('password').value;
-    if (nama && phone && email && pass) {
-        var patients = JSON.parse(localStorage.getItem('registered_patients') || '[]');
-        patients.push({name: nama, phone: phone, email: email, password: pass});
-        localStorage.setItem('registered_patients', JSON.stringify(patients));
-        localStorage.setItem('userName', nama);
-        localStorage.setItem('last_registered_email', email);
-        localStorage.setItem('last_registered_phone', phone);
-        localStorage.setItem('last_registered_pass', pass);
-        alert('Pendaftaran berhasil! Silakan masuk dengan akun Anda.');
-        window.location.href='login_pasien.html';
-    } else { 
-        alert('Mohon isi seluruh data.'); 
-    }" class="w-full h-[44px] bg-primary text-on-primary rounded-full font-headline-md text-body-md flex items-center justify-center hover:bg-surface-tint active:scale-95 transition-all duration-200 shadow-sm" type="submit">
-                        Daftar
-                    </button>
-<div class="text-center">
-<span class="font-body-md text-body-md text-on-surface-variant">Already have an account?</span>
-<a class="font-headline-md text-body-md text-primary hover:underline ml-1" href="login_pasien.html">Log in</a>
-</div>
-</div>
+    var id = document.getElementById('identifier').value;
+    var pw = document.getElementById('password').value;
+    if (!id || !pw) { alert('Mohon isi email/telepon dan kata sandi.'); return; }
+    var patients = JSON.parse(localStorage.getItem('registered_patients') || '[]');
+    var found = patients.find(function(p) { return (p.email === id || p.phone === id) && p.password === pw; });
+    if (found) {
+        localStorage.setItem('userRole', 'pasien');
+        localStorage.setItem('userName', found.name);
+        window.location.href='dashboard_pasien.html';
+    } else if (patients.length === 0) {
+        localStorage.setItem('userRole', 'pasien');
+        localStorage.setItem('userName', id || 'Budi Santoso');
+        window.location.href='dashboard_pasien.html';
+    } else {
+        alert('Email/Telepon atau kata sandi salah. Silakan coba lagi.');
+    }" class="w-full bg-primary hover:bg-surface-tint text-on-primary font-headline-md text-headline-md py-3 rounded-full shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-all mt-4 flex justify-center items-center gap-2" type="submit">
+                    Masuk
+                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
 </form>
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink-0 mx-4 font-body-md text-body-md text-outline">atau</span>
+<div class="flex-grow border-t border-outline-variant"></div>
 </div>
-<div class="mt-8 flex justify-center items-center gap-2 text-on-surface-variant opacity-70">
-<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
-<span class="font-label-caps text-label-caps">Secure Registration</span>
+<div class="text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Belum punya akun? 
+                    <a class="font-headline-md text-headline-md text-primary hover:underline ml-1" href="daftar_pasien.html">Daftar Akun Baru</a>
+</p>
+</div>
 </div>
 </main>
 <script>
-        document.querySelector('button[aria-label="Toggle password visibility"]').addEventListener('click', function() {
-            const input = document.getElementById('password');
-            const icon = this.querySelector('.material-symbols-outlined');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.textContent = 'visibility';
-                icon.setAttribute('data-icon', 'visibility');
-            } else {
-                input.type = 'password';
-                icon.textContent = 'visibility_off';
-                icon.setAttribute('data-icon', 'visibility_off');
+    document.addEventListener('DOMContentLoaded', function() {
+        var lastEmail = localStorage.getItem('last_registered_email');
+        var lastPhone = localStorage.getItem('last_registered_phone');
+        var lastPass = localStorage.getItem('last_registered_pass');
+        
+        if (lastEmail || lastPhone) {
+            document.getElementById('identifier').value = lastEmail || lastPhone;
+            if (lastPass) {
+                document.getElementById('password').value = lastPass;
             }
-        });
-    </script>
-</body></html>e suppressed as this is a linear transactional/login screen. -->
+            localStorage.removeItem('last_registered_email');
+            localStorage.removeItem('last_registered_phone');
+            localStorage.removeItem('last_registered_pass');
+        }
+    });
+
+    document.querySelector('#password + button').addEventListener('click', function() {
+        var input = document.getElementById('password');
+        var icon = this.querySelector('.material-symbols-outlined');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = 'visibility_off';
+        } else {
+            input.type = 'password';
+            icon.textContent = 'visibility';
+        }
+    });
+</script>
 </body></html>
