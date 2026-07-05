@@ -1,17 +1,36 @@
 {
+  "id": "/medqueue/",
   "name": "MedQueue - Sistem Antrean Pasien Pintar",
   "short_name": "MedQueue",
+  "description": "Aplikasi sistem antrean pasien pintar untuk rumah sakit dan klinik. Kelola antrean, ambil nomor antrean, dan pantau status secara real-time.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#faf9fe",
   "theme_color": "#0058bc",
   "orientation": "portrait",
+  "categories": ["medical", "health", "productivity"],
   "icons": [
     {
       "src": "medqueue_logo.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "medqueue_logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "medqueue_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MedQueue Splash Screen"
     }
   ]
 }
