@@ -73,66 +73,20 @@
 <a class="font-body-md text-body-md text-primary hover:text-primary-container transition-colors" href="#">Lupa Kata Sandi?</a>
 </div>
 <button onclick="event.preventDefault(); 
-    var id = document.getElementById('identifier').value;
+    var id = document.getElementById('identifier').value.trim();
     var pw = document.getElementById('password').value;
     if (!id || !pw) { alert('Mohon isi email/telepon dan kata sandi.'); return; }
     var patients = JSON.parse(localStorage.getItem('registered_patients') || '[]');
-    var found = patients.find(function(p) { return (p.email === id || p.phone === id) && p.password === pw; });
+    var found = patients.find(function(p) { return (p.email.toLowerCase() === id.toLowerCase() || p.phone === id) && p.password === pw; });
     if (found) {
         localStorage.setItem('userRole', 'pasien');
         localStorage.setItem('userName', found.name);
-        window.location.href='dashboard_pasien.html';
-    } else if (patients.length === 0) {
-        localStorage.setItem('userRole', 'pasien');
-        localStorage.setItem('userName', id || 'Budi Santoso');
+        localStorage.setItem('userEmail', found.email);
+        localStorage.setItem('userPhone', found.phone);
         window.location.href='dashboard_pasien.html';
     } else {
-        alert('Email/Telepon atau kata sandi salah. Silakan coba lagi.');
+        alert('Email/Telepon atau kata sandi salah. Jika Anda menggunakan perangkat baru, silakan Daftar Akun Baru terlebih dahulu.');
     }" class="w-full bg-primary hover:bg-surface-tint text-on-primary font-headline-md text-headline-md py-3 rounded-full shadow-[0px_4px_12px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-all mt-4 flex justify-center items-center gap-2" type="submit">
                     Masuk
                     <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
-</form>
-<div class="relative flex items-center py-4">
-<div class="flex-grow border-t border-outline-variant"></div>
-<span class="flex-shrink-0 mx-4 font-body-md text-body-md text-outline">atau</span>
-<div class="flex-grow border-t border-outline-variant"></div>
-</div>
-<div class="text-center">
-<p class="font-body-md text-body-md text-on-surface-variant">
-                    Belum punya akun? 
-                    <a class="font-headline-md text-headline-md text-primary hover:underline ml-1" href="daftar_pasien.html">Daftar Akun Baru</a>
-</p>
-</div>
-</div>
-</main>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var lastEmail = localStorage.getItem('last_registered_email');
-        var lastPhone = localStorage.getItem('last_registered_phone');
-        var lastPass = localStorage.getItem('last_registered_pass');
-        
-        if (lastEmail || lastPhone) {
-            document.getElementById('identifier').value = lastEmail || lastPhone;
-            if (lastPass) {
-                document.getElementById('password').value = lastPass;
-            }
-            localStorage.removeItem('last_registered_email');
-            localStorage.removeItem('last_registered_phone');
-            localStorage.removeItem('last_registered_pass');
-        }
-    });
-
-    document.querySelector('#password + button').addEventListener('click', function() {
-        var input = document.getElementById('password');
-        var icon = this.querySelector('.material-symbols-outlined');
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.textContent = 'visibility_off';
-        } else {
-            input.type = 'password';
-            icon.textContent = 'visibility';
-        }
-    });
-</script>
-</body></html>
