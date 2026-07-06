@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pelayanan Selesai - MedQueue Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "surface": "#faf9fe","surface-bright": "#faf9fe","secondary-fixed": "#c1e8ff","tertiary": "#8a2bb9","surface-container-low": "#f4f3f8","surface-container-high": "#e9e7ed","primary-fixed-dim": "#adc6ff","outline": "#717786","on-primary-container": "#fefcff","surface-container-lowest": "#ffffff","on-tertiary-container": "#fffbff","on-primary-fixed-variant": "#004493","primary-fixed": "#d8e2ff","inverse-surface": "#2f3034","inverse-on-surface": "#f1f0f5","on-secondary": "#ffffff","secondary-container": "#60cdff","on-surface": "#1a1b1f","on-secondary-container": "#005572","primary-container": "#0070eb","on-tertiary-fixed-variant": "#7201a2","tertiary-fixed-dim": "#e8b3ff","on-error": "#ffffff","on-surface-variant": "#414755","on-secondary-fixed": "#001e2b","tertiary-fixed": "#f6d9ff","primary": "#0058bc","on-tertiary-fixed": "#310048","secondary-fixed-dim": "#74d1ff","on-background": "#1a1b1f","background": "#faf9fe","secondary": "#006687","tertiary-container": "#a649d5","on-primary": "#ffffff","surface-tint": "#005bc1","outline-variant": "#c1c6d7","error": "#ba1a1a","error-container": "#ffdad6","on-primary-fixed": "#001a41","on-tertiary": "#ffffff","surface-container": "#eeedf3","surface-container-highest": "#e3e2e7","on-secondary-fixed-variant": "#004d67","surface-variant": "#e3e2e7","surface-dim": "#dad9df","inverse-primary": "#adc6ff","on-error-container": "#93000a","success": "#16a34a","success-container": "#dcfce7"
+                },
+                "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
+                "spacing": {"stack-lg": "24px","card-gap": "16px","stack-sm": "12px","base": "8px","container-padding": "20px","stack-md": "16px"},
+                "fontFamily": {"body-lg": ["Inter"],"status-number": ["Inter"],"headline-md": ["Inter"],"headline-lg": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],"label-caps": ["Inter"]},
+                "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center font-body-md p-container-padding">
+<main class="w-full max-w-md flex flex-col items-center animate-[fadeIn_0.5s_ease-out]">
+    <div class="mb-stack-lg flex flex-col items-center relative">
+        <div class="w-24 h-24 rounded-full bg-success-container flex items-center justify-center shadow-[0px_8px_24px_rgba(22,163,74,0.2)] animate-[scaleIn_0.4s_ease-out_backwards]">
+            <span class="material-symbols-outlined text-[48px] text-success">task_alt</span>
+        </div>
+        <h1 class="mt-stack-lg font-headline-lg-mobile text-headline-lg-mobile text-center text-success">Pelayanan Selesai!</h1>
+        <p class="font-body-md text-body-md text-on-surface-variant text-center mt-base">Pasien telah selesai dilayani dengan baik.</p>
+    </div>
+    <div class="w-full bg-surface-container-lowest rounded-xl p-container-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-stack-md mb-stack-lg animate-[slideUp_0.5s_ease-out_0.1s_backwards]">
+        <h3 class="font-headline-md text-headline-md text-on-surface border-b border-surface-variant pb-3">Ringkasan Pelayanan</h3>
+        <div class="space-y-4">
+            <div class="flex items-start"><span class="material-symbols-outlined text-primary mr-3 text-xl">person</span><div><p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Nama Pasien</p><p id="donePatientName" class="font-body-md text-body-md text-on-background font-medium">---</p></div></div>
+            <div class="flex items-start"><span class="material-symbols-outlined text-primary mr-3 text-xl">confirmation_number</span><div><p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Nomor Antrean</p><p id="doneQueueId" class="font-body-md text-body-md text-on-background font-medium">---</p></div></div>
+            <div class="flex items-start"><span class="material-symbols-outlined text-primary mr-3 text-xl">stethoscope</span><div><p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Poliklinik</p><p id="donePoliName" class="font-body-md text-body-md text-on-background font-medium">---</p></div></div>
+            <div class="flex items-start"><span class="material-symbols-outlined text-primary mr-3 text-xl">timer</span><div><p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Durasi Pelayanan</p><p id="doneDuration" class="font-body-md text-body-md text-on-background font-medium">--- Menit</p></div></div>
+            <div class="flex items-start"><span class="material-symbols-outlined text-primary mr-3 text-xl">calendar_today</span><div><p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Tanggal & Waktu</p><p id="doneDateTime" class="font-body-md text-body-md text-on-background font-medium">---</p></div></div>
+        </div>
+    </div>
+    <div class="w-full flex flex-col gap-stack-md animate-[slideUp_0.5s_ease-out_0.2s_backwards]">
+        <button onclick="window.location.href='riwayat_antrean.html'" class="w-full h-12 bg-primary hover:bg-surface-tint text-on-primary font-headline-md text-headline-md rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-[0.98] shadow-md">
+            <span class="material-symbols-outlined text-[20px]">history</span>
+            Lihat Riwayat Antrean
+        </button>
+        <button onclick="scanBerikutnya()" class="w-full h-12 bg-secondary-fixed text-on-secondary-fixed font-headline-md text-headline-md rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-[0.98]">
+            <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+            Scan Pasien Berikutnya
+        </button>
+        <button onclick="window.location.href='dashboard_admin_utama.html'" class="w-full h-12 bg-transparent text-primary border border-outline-variant font-headline-md text-headline-md rounded-lg flex items-center justify-center transition-colors hover:bg-surface-container-low active:scale-[0.98]">
+            Kembali ke Dashboard
+        </button>
+    </div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const patientName = localStorage.getItem('scanned_patient_name');
+    const patientId = localStorage.getItem('scanned_patient_id');
+    const patientPoli = localStorage.getItem('scanned_patient_poli');
+    const duration = localStorage.getItem('service_duration');
+    if (patientName) document.getElementById('donePatientName').innerText = patientName;
+    if (patientId) document.getElementById('doneQueueId').innerText = patientId;
+    if (patientPoli) document.getElementById('donePoliName').innerText = patientPoli;
+    if (duration) document.getElementById('doneDuration').innerText = duration + ' Menit';
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    document.getElementById('doneDateTime').innerText = now.toLocaleDateString('id-ID', options);
+});
+function scanBerikutnya() {
+    localStorage.removeItem('scanned_patient_id');
+    localStorage.removeItem('scanned_patient_name');
+    localStorage.removeItem('scanned_patient_poli');
+    localStorage.removeItem('service_start_time');
+    localStorage.removeItem('service_duration');
+    window.location.href = 'scan_barcode_pasien.html';
+}
+</script>
+</body></html>
