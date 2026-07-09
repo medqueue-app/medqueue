@@ -20,8 +20,8 @@ function loadFirebase() {
                 const firebaseConfig = {
                   apiKey: "AIzaSyD3fKpibWcvijbMnIRbvaUzDYyA7fyhaT0",
                   authDomain: "antreanmedqueue.firebaseapp.com",
-                  // Jika database tidak mau terhubung, URL ini bisa diganti dengan versi .asia-southeast1
-                  databaseURL: "https://antreanmedqueue-default-rtdb.firebaseio.com", 
+                  // INI ADALAH LINK DATABASE SINGAPURA ANDA YANG BENAR:
+                  databaseURL: "https://antreanmedqueue-default-rtdb.asia-southeast1.firebasedatabase.app", 
                   projectId: "antreanmedqueue",
                   storageBucket: "antreanmedqueue.firebasestorage.app",
                   messagingSenderId: "627313956418",
@@ -36,13 +36,11 @@ function loadFirebase() {
                     
                     const db = firebase.database();
                     
-                    // Jika ada data yang tertahan untuk disimpan (race condition fix)
                     if (window.pendingFirebaseSave) {
                         db.ref('medqueue_data').set(window.pendingFirebaseSave);
                         window.pendingFirebaseSave = null;
                     }
 
-                    // Dengarkan perubahan dari Firebase dan SINKRONKAN ke LocalStorage HP
                     db.ref('medqueue_data').on('value', (snapshot) => {
                         const data = snapshot.val();
                         if (data && !window.pendingFirebaseSave) {
@@ -60,7 +58,6 @@ function loadFirebase() {
     });
 }
 
-// Initialize queue database if it doesn't exist
 function initQueueDB() {
     if (!localStorage.getItem('medqueue_data')) {
         const initialData = {
@@ -86,7 +83,6 @@ function initQueueDB() {
     }
 }
 
-// Get the entire database safely
 function getQueueDB() {
     let data;
     try {
@@ -102,11 +98,9 @@ function getQueueDB() {
     return data;
 }
 
-// Save the database (LocalStorage + Firebase Sync)
 function saveQueueDB(data) {
     localStorage.setItem('medqueue_data', JSON.stringify(data));
     
-    // Sinkronkan secara otomatis ke Firebase Realtime Database
     if (window.firebase && firebase.database) {
         firebase.database().ref('medqueue_data').set(data).catch(err => {
             console.error("Gagal sinkron ke Firebase", err);
@@ -116,7 +110,6 @@ function saveQueueDB(data) {
     }
 }
 
-// Add a new queue for a patient
 function addPatientQueue(patientName, poliName) {
     const db = getQueueDB();
     let prefix = 'B'; 
@@ -147,7 +140,6 @@ function addPatientQueue(patientName, poliName) {
     return newQueue;
 }
 
-// Get current active queue for the current logged-in patient
 function getActiveQueue() {
     const activeId = localStorage.getItem('activeQueueId');
     if (!activeId) return null;
@@ -155,7 +147,6 @@ function getActiveQueue() {
     return db.queues.find(q => q.id === activeId) || null;
 }
 
-// Update queue status (called by Admin)
 function updateQueueStatus(queueId, newStatus) {
     const db = getQueueDB();
     const queue = db.queues.find(q => q.id === queueId);
@@ -170,7 +161,6 @@ function updateQueueStatus(queueId, newStatus) {
     return false;
 }
 
-// Log out user
 function logout() {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userName');
@@ -182,7 +172,6 @@ function clearActiveQueue() {
     localStorage.removeItem('activeQueueId');
 }
 
-// Mulai jalankan sistem Firebase saat file diload
 loadFirebase().then(() => {
     if (!localStorage.getItem('medqueue_data')) {
         initQueueDB();
