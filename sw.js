@@ -1,4 +1,4 @@
-const CACHE_NAME = 'medqueue-v2';
+const CACHE_NAME = 'medqueue-v4';
 const ASSETS = [
   './index.html',
   './pilih_role.html',
