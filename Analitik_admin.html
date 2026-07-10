@@ -1,0 +1,251 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedQueue - Analitik Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+            "primary": "#0058bc", "primary-fixed": "#d8e2ff", "on-primary": "#ffffff",
+            "secondary": "#006687", "secondary-container": "#60cdff", "on-secondary-container": "#005572",
+            "surface": "#faf9fe", "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f3f8", "surface-container-high": "#e9e7ed",
+            "on-surface": "#1a1b1f", "on-surface-variant": "#414755", "outline": "#717786", "outline-variant": "#c1c6d7",
+            "background": "#faf9fe", "on-background": "#1a1b1f"
+        },
+        "fontFamily": {
+            "headline-md": ["Inter"], "body-md": ["Inter"], "status-number": ["Inter"], "headline-lg": ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col bg-surface-container-lowest h-screen w-80 rounded-r-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] z-40 fixed left-0 top-0 py-4">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="relative w-12 h-12 rounded-full overflow-hidden group cursor-pointer" onclick="document.getElementById('adminAvatarUpload').click()">
+    <img id="sidebarAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAni8rnCBlzhp2X0n333H2OejwjjfQqyVpB51dpHywJv7UGFFKhTmoi7iNx0FtmJ0mdKYiAm198OsLgpPcLMalTD8NS1PERTSpxUnNA6gr_u2BPkTFi4RI75Yjso7tWLznwhirm-tzVgC9w6WGpnDrwR8U7iY-mPuZw6z00TpHP_OGJgQyqnG618Bho12V1e91eEOFV_aB0nyaHAAGFHAwOLKQP8rc4zWt7HfpJOGoGTI_D4B9MSxTfRvLANASmjaC9MqxbhXC0GIPs">
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <span class="material-symbols-outlined text-white text-xs">edit</span>
+    </div>
+</div>
+<input type="file" id="adminAvatarUpload" accept="image/*" class="hidden" onchange="previewAndSaveAdminAvatar(event)">
+<div>
+<h2 id="sidebarAdminName" class="font-headline-md text-xl font-bold text-primary">Panel Admin</h2>
+<p class="text-sm text-on-surface-variant">Klinik MedQueue</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="dashboard_admin_utama.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-semibold">Dasbor</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="kelola_daftar_antrean.html?poli=Umum">
+<span class="material-symbols-outlined">group</span>
+<span class="font-semibold">Kelola Antrean</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 transition-colors" href="analitik_admin.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-semibold">Analitik</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="pengaturan_staf_admin.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-semibold">Pengaturan Staf</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto px-2">
+<a onclick="logout()" class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full px-4 py-3 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-semibold">Keluar</span>
+</a>
+</div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-80 flex flex-col min-h-screen">
+<!-- Mobile Header -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-surface shadow-sm flex justify-between items-center px-5 h-14">
+<div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='dashboard_admin_utama.html'">
+<div class="relative w-8 h-8 rounded-full overflow-hidden" onclick="event.stopPropagation(); document.getElementById('adminAvatarUpload').click()">
+    <img id="mobileHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFs5kw4RzysJlkGddhmxwlJxzcH6dZMN58OmgiBvWA7bFnivgqqHMEifzj-v1FLapSTp_HuAjxmvo5jzxFqpPwGqYMLy6m3EFpPBSVXx8R7ByU5WHkHDAeiYK_9aZEzsXPw8Ncplf1dhqBjyW-SnEX6I-B2uSgpEYi0heeghulrIMub5PfqLNyCGbi-m89igAwrAjWDwQoySWDtUcuP5fsnN4vr04mhmgnzuxTdm8s39-zxMZbRe1vIhfbAEV-lXiS7hZCdf4CU4w">
+</div>
+<h1 class="font-bold text-xl text-primary">Analitik</h1>
+</div>
+<button onclick="window.location.href='dashboard_admin_utama.html'" class="text-on-surface-variant p-2 rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+
+<div class="flex-1 px-5 py-6 mt-14 md:mt-0 pb-24 md:pb-8">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-on-background mb-2">Statistik Kinerja</h1>
+<p class="text-on-surface-variant">Laporan aktivitas antrean klinik bulan ini</p>
+</div>
+
+<!-- Key Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/30">
+        <div class="flex items-center gap-3 text-primary mb-2">
+            <span class="material-symbols-outlined bg-primary/10 p-2 rounded-lg">monitoring</span>
+            <h3 class="font-semibold text-sm text-on-surface-variant">Total Kunjungan</h3>
+        </div>
+        <p class="text-3xl font-extrabold text-on-surface">1,245</p>
+        <p class="text-xs text-green-600 mt-2 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span> Naik 8.4%</p>
+    </div>
+    
+    <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/30">
+        <div class="flex items-center gap-3 text-secondary mb-2">
+            <span class="material-symbols-outlined bg-secondary/10 p-2 rounded-lg">timer</span>
+            <h3 class="font-semibold text-sm text-on-surface-variant">Rata-rata Tunggu</h3>
+        </div>
+        <p class="text-3xl font-extrabold text-on-surface">18<span class="text-xl text-outline ml-1">mnt</span></p>
+        <p class="text-xs text-green-600 mt-2 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_down</span> Lebih cepat 2 mnt</p>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/30">
+        <div class="flex items-center gap-3 text-purple-600 mb-2">
+            <span class="material-symbols-outlined bg-purple-100 p-2 rounded-lg">sentiment_very_satisfied</span>
+            <h3 class="font-semibold text-sm text-on-surface-variant">Tingkat Kepuasan</h3>
+        </div>
+        <p class="text-3xl font-extrabold text-on-surface">4.8<span class="text-xl text-outline ml-1">/5</span></p>
+        <p class="text-xs text-outline mt-2 font-medium">Dari 850 ulasan</p>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm border border-outline-variant/30">
+        <div class="flex items-center gap-3 text-orange-600 mb-2">
+            <span class="material-symbols-outlined bg-orange-100 p-2 rounded-lg">cancel</span>
+            <h3 class="font-semibold text-sm text-on-surface-variant">Pasien Batal</h3>
+        </div>
+        <p class="text-3xl font-extrabold text-on-surface">24</p>
+        <p class="text-xs text-red-500 mt-2 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">trending_up</span> Naik 2%</p>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <div class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/30">
+        <h3 class="font-bold text-lg text-on-surface mb-6">Distribusi Pasien Per Poli (Bulan Ini)</h3>
+        <div class="flex items-end h-48 gap-4 px-2">
+            <div class="flex-1 flex flex-col items-center gap-2">
+                <div class="w-full bg-primary/20 rounded-t-md relative h-full flex items-end">
+                    <div class="w-full bg-primary rounded-t-md transition-all duration-1000 ease-out" style="height: 80%;"></div>
+                </div>
+                <span class="text-xs font-semibold text-on-surface-variant">Umum</span>
+                <span class="text-xs text-outline font-bold">540</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+                <div class="w-full bg-tertiary/20 rounded-t-md relative h-full flex items-end">
+                    <div class="w-full bg-tertiary rounded-t-md transition-all duration-1000 ease-out" style="height: 45%;"></div>
+                </div>
+                <span class="text-xs font-semibold text-on-surface-variant">Gigi</span>
+                <span class="text-xs text-outline font-bold">310</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+                <div class="w-full bg-secondary/20 rounded-t-md relative h-full flex items-end">
+                    <div class="w-full bg-secondary rounded-t-md transition-all duration-1000 ease-out" style="height: 35%;"></div>
+                </div>
+                <span class="text-xs font-semibold text-on-surface-variant">Anak</span>
+                <span class="text-xs text-outline font-bold">215</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-2">
+                <div class="w-full bg-orange-600/20 rounded-t-md relative h-full flex items-end">
+                    <div class="w-full bg-orange-600 rounded-t-md transition-all duration-1000 ease-out" style="height: 25%;"></div>
+                </div>
+                <span class="text-xs font-semibold text-on-surface-variant">Kandungan</span>
+                <span class="text-xs text-outline font-bold">180</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="lg:col-span-1 bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant/30 flex flex-col">
+        <h3 class="font-bold text-lg text-on-surface mb-2">Beban Jam Sibuk</h3>
+        <p class="text-sm text-on-surface-variant mb-6">Waktu tersibuk klinik</p>
+        
+        <div class="flex flex-col gap-4 flex-1 justify-center">
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="font-semibold text-on-surface">Pagi (08:00 - 11:00)</span>
+                    <span class="text-primary font-bold">65%</span>
+                </div>
+                <div class="w-full bg-surface-container-high rounded-full h-2.5">
+                    <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="font-semibold text-on-surface">Siang (11:00 - 14:00)</span>
+                    <span class="text-tertiary font-bold">20%</span>
+                </div>
+                <div class="w-full bg-surface-container-high rounded-full h-2.5">
+                    <div class="bg-tertiary h-2.5 rounded-full" style="width: 20%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span class="font-semibold text-on-surface">Sore (14:00 - 16:00)</span>
+                    <span class="text-secondary font-bold">15%</span>
+                </div>
+                <div class="w-full bg-surface-container-high rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 15%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const adminName = localStorage.getItem('adminName');
+    if (adminName) {
+        document.getElementById('sidebarAdminName').innerText = adminName;
+    }
+    
+    const adminAvatar = localStorage.getItem('adminAvatar');
+    if (adminAvatar) {
+        const desk = document.getElementById('sidebarAvatar');
+        const mob = document.getElementById('mobileHeaderAvatar');
+        if (desk) desk.src = adminAvatar;
+        if (mob) mob.src = adminAvatar;
+    }
+});
+
+function previewAndSaveAdminAvatar(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            const desk = document.getElementById('sidebarAvatar');
+            const mob = document.getElementById('mobileHeaderAvatar');
+            if (desk) desk.src = base64String;
+            if (mob) mob.src = base64String;
+            localStorage.setItem('adminAvatar', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+</body></html>
