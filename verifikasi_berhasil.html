@@ -1,106 +1,136 @@
 <!DOCTYPE html><html lang="id"><head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Verifikasi Berhasil - MedQueue Admin</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Verifikasi Berhasil - MedQueue</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="js/queue.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script id="tailwind-config">
     tailwind.config = {
         darkMode: "class",
         theme: {
             extend: {
-                "colors": {
-                    "surface": "#faf9fe","surface-bright": "#faf9fe","secondary-fixed": "#c1e8ff","tertiary": "#8a2bb9","surface-container-low": "#f4f3f8","surface-container-high": "#e9e7ed","primary-fixed-dim": "#adc6ff","outline": "#717786","on-primary-container": "#fefcff","surface-container-lowest": "#ffffff","on-tertiary-container": "#fffbff","on-primary-fixed-variant": "#004493","primary-fixed": "#d8e2ff","inverse-surface": "#2f3034","inverse-on-surface": "#f1f0f5","on-secondary": "#ffffff","secondary-container": "#60cdff","on-surface": "#1a1b1f","on-secondary-container": "#005572","primary-container": "#0070eb","on-tertiary-fixed-variant": "#7201a2","tertiary-fixed-dim": "#e8b3ff","on-error": "#ffffff","on-surface-variant": "#414755","on-secondary-fixed": "#001e2b","tertiary-fixed": "#f6d9ff","primary": "#0058bc","on-tertiary-fixed": "#310048","secondary-fixed-dim": "#74d1ff","on-background": "#1a1b1f","background": "#faf9fe","secondary": "#006687","tertiary-container": "#a649d5","on-primary": "#ffffff","surface-tint": "#005bc1","outline-variant": "#c1c6d7","error": "#ba1a1a","error-container": "#ffdad6","on-primary-fixed": "#001a41","on-tertiary": "#ffffff","surface-container": "#eeedf3","surface-container-highest": "#e3e2e7","on-secondary-fixed-variant": "#004d67","surface-variant": "#e3e2e7","surface-dim": "#dad9df","inverse-primary": "#adc6ff","on-error-container": "#93000a","success": "#16a34a","success-container": "#dcfce7"
+                colors: {
+                    primary: "#0062d1",
+                    surface: "#ffffff",
+                    "surface-variant": "#f2f2f7",
+                    "on-surface": "#1c1c1e",
+                    "on-surface-variant": "#8e8e93",
+                    success: "#34c759",
+                    "success-bg": "#eefaf1",
+                    outline: "#e5e5ea"
                 },
-                "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
-                "spacing": {"stack-lg": "24px","card-gap": "16px","stack-sm": "12px","base": "8px","container-padding": "20px","stack-md": "16px"},
-                "fontFamily": {"body-lg": ["Inter"],"status-number": ["Inter"],"headline-md": ["Inter"],"headline-lg": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],"label-caps": ["Inter"]},
-                "fontSize": {
-                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
-                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
                 }
             }
         }
     }
 </script>
 <style>
-    .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    body { font-family: 'Inter', sans-serif; background-color: #f2f2f7; }
+    .mobile-container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        min-height: 100vh;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        display: flex;
+        flex-col;
+        position: relative;
+    }
+    .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    
     @keyframes checkmark { from { transform: scale(0); } to { transform: scale(1); } }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 </style>
 </head>
-<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center font-body-md p-container-padding">
-<main class="w-full max-w-md flex flex-col items-center animate-[fadeIn_0.5s_ease-out]">
-    <div class="mb-stack-lg flex flex-col items-center relative">
-        <div class="w-24 h-24 rounded-full bg-success-container flex items-center justify-center shadow-[0px_8px_24px_rgba(22,163,74,0.2)] animate-[scaleIn_0.4s_ease-out_backwards]">
-            <span class="material-symbols-outlined text-[48px] text-success animate-[checkmark_0.3s_ease-out_0.2s_backwards]">check_circle</span>
+<body class="antialiased">
+
+<div class="mobile-container flex flex-col items-center justify-center px-6 py-10">
+    
+    <!-- Success Animation Area -->
+    <div class="flex flex-col items-center justify-center w-full mb-8 animate-[slideUp_0.5s_ease-out]">
+        <div class="w-24 h-24 rounded-full bg-success-bg flex items-center justify-center mb-6">
+            <span class="material-symbols-outlined text-[48px] text-success fill animate-[checkmark_0.4s_ease-out_backwards]">check_circle</span>
         </div>
-        <h1 class="mt-stack-lg font-headline-lg-mobile text-headline-lg-mobile text-center text-on-background">Verifikasi Berhasil</h1>
-        <p class="font-body-md text-body-md text-on-surface-variant text-center mt-base">Data pasien telah terverifikasi dan siap dilayani.</p>
+        
+        <h1 class="text-2xl font-bold text-on-surface mb-2">Verifikasi Berhasil</h1>
+        <p class="text-[13px] text-on-surface-variant text-center px-4">
+            Data pasien telah terverifikasi dan siap dilayani.
+        </p>
     </div>
-    <div class="w-full bg-surface-container-lowest rounded-xl p-container-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col gap-stack-md mb-stack-lg animate-[slideUp_0.5s_ease-out_0.1s_backwards]">
-        <div class="flex items-start gap-stack-md border-b border-surface-variant pb-stack-md">
-            <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-on-primary-container">person</span>
+
+    <!-- Patient Card -->
+    <div class="w-full bg-surface rounded-2xl shadow-[0px_4px_16px_rgba(0,0,0,0.06)] border border-outline p-5 mb-8 animate-[slideUp_0.6s_ease-out]">
+        <!-- Patient Info -->
+        <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <span class="material-symbols-outlined fill text-[24px]">person</span>
             </div>
             <div>
-                <h2 id="verifyPatientName" class="font-headline-md text-headline-md text-on-surface">Memuat...</h2>
-                <p class="font-body-md text-body-md text-on-surface-variant">Pasien Terverifikasi</p>
+                <h2 id="verifyPatientName" class="text-[17px] font-bold text-on-surface">Bpk. Ahmad Riyadi</h2>
+                <p id="verifyPatientRM" class="text-[13px] text-on-surface-variant font-medium">RM-8829103</p>
             </div>
         </div>
-        <div class="grid grid-cols-2 gap-stack-md">
-            <div class="flex flex-col">
-                <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider mb-1">Nomor Antrean</span>
-                <span id="verifyQueueId" class="font-status-number text-status-number text-primary">---</span>
+        
+        <!-- Divider -->
+        <div class="h-px w-full bg-outline mb-5"></div>
+        
+        <!-- Queue Info -->
+        <div class="flex justify-between items-start">
+            <div>
+                <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-1">NOMOR ANTREAN</p>
+                <p id="verifyQueueId" class="text-[36px] font-black text-primary leading-none">B-12</p>
             </div>
-            <div class="flex flex-col justify-end">
-                <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider mb-1">Poli Tujuan</span>
-                <div class="flex items-center gap-2">
-                    <div class="w-3 h-3 rounded-full bg-secondary"></div>
-                    <span id="verifyPoliName" class="font-headline-md text-headline-md text-on-surface">---</span>
+            <div class="text-right">
+                <p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">POLI TUJUAN</p>
+                <div class="flex items-center justify-end gap-1.5">
+                    <div class="w-2 h-2 rounded-full bg-success"></div>
+                    <span id="verifyPoliName" class="text-[15px] font-bold text-on-surface">Poli Umum</span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="w-full flex flex-col gap-stack-md animate-[slideUp_0.5s_ease-out_0.2s_backwards]">
-        <button id="btnMulaiPelayanan" onclick="mulaiPelayanan()" class="w-full h-12 bg-primary hover:bg-primary-container text-on-primary font-headline-md text-headline-md rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-[0.98]">
-            <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+
+    <!-- Actions -->
+    <div class="w-full flex flex-col gap-4 mt-auto md:mt-0 animate-[slideUp_0.7s_ease-out]">
+        <button onclick="mulaiPelayanan()" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold text-[16px] py-4 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+            <span class="material-symbols-outlined fill text-[20px]">play_arrow</span>
             Mulai Pelayanan
         </button>
-        <button onclick="window.location.href='dashboard_admin_utama.html'" class="w-full h-12 bg-transparent text-primary hover:bg-primary-fixed/20 font-headline-md text-headline-md rounded-lg flex items-center justify-center transition-colors active:scale-[0.98]">
-            Kembali ke Dashboard
+        <button onclick="window.location.href='dashboard_admin_utama.html'" class="w-full bg-transparent text-primary hover:bg-primary/5 font-semibold text-[15px] py-3 rounded-xl transition-colors">
+            Kembali ke Beranda
         </button>
     </div>
-</main>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // Load data pasien yang di-scan
     const patientId = localStorage.getItem('scanned_patient_id');
     const patientName = localStorage.getItem('scanned_patient_name');
     const patientPoli = localStorage.getItem('scanned_patient_poli');
+
     if (patientId && patientName) {
         document.getElementById('verifyPatientName').innerText = patientName;
         document.getElementById('verifyQueueId').innerText = patientId;
         document.getElementById('verifyPoliName').innerText = patientPoli || 'Poli Umum';
-    } else {
-        document.getElementById('verifyPatientName').innerText = 'Data tidak ditemukan';
-        document.getElementById('verifyQueueId').innerText = '-';
-        document.getElementById('verifyPoliName').innerText = '-';
+        document.getElementById('verifyPatientRM').innerText = 'RM-' + Math.floor(1000000 + Math.random() * 9000000);
     }
 });
+
 function mulaiPelayanan() {
     const patientId = localStorage.getItem('scanned_patient_id');
     if (patientId) {
+        // Update status antrean ke "Dilayani"
         updateQueueStatus(patientId, 'Dilayani');
+        // Simpan waktu mulai pelayanan
         localStorage.setItem('service_start_time', new Date().toISOString());
+        // Redirect ke halaman admin sedang melayani
+        window.location.href = 'admin_sedang_melayani.html';
+    } else {
         window.location.href = 'admin_sedang_melayani.html';
     }
 }

@@ -1,143 +1,186 @@
 <!DOCTYPE html><html lang="id"><head>
 <meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Sedang Melayani - MedQueue Admin</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Sedang Melayani - MedQueue</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="js/queue.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script id="tailwind-config">
     tailwind.config = {
         darkMode: "class",
         theme: {
             extend: {
-                "colors": {
-                    "surface": "#faf9fe","surface-bright": "#faf9fe","secondary-fixed": "#c1e8ff","tertiary": "#8a2bb9","surface-container-low": "#f4f3f8","surface-container-high": "#e9e7ed","primary-fixed-dim": "#adc6ff","outline": "#717786","on-primary-container": "#fefcff","surface-container-lowest": "#ffffff","on-tertiary-container": "#fffbff","on-primary-fixed-variant": "#004493","primary-fixed": "#d8e2ff","inverse-surface": "#2f3034","inverse-on-surface": "#f1f0f5","on-secondary": "#ffffff","secondary-container": "#60cdff","on-surface": "#1a1b1f","on-secondary-container": "#005572","primary-container": "#0070eb","on-tertiary-fixed-variant": "#7201a2","tertiary-fixed-dim": "#e8b3ff","on-error": "#ffffff","on-surface-variant": "#414755","on-secondary-fixed": "#001e2b","tertiary-fixed": "#f6d9ff","primary": "#0058bc","on-tertiary-fixed": "#310048","secondary-fixed-dim": "#74d1ff","on-background": "#1a1b1f","background": "#faf9fe","secondary": "#006687","tertiary-container": "#a649d5","on-primary": "#ffffff","surface-tint": "#005bc1","outline-variant": "#c1c6d7","error": "#ba1a1a","error-container": "#ffdad6","on-primary-fixed": "#001a41","on-tertiary": "#ffffff","surface-container": "#eeedf3","surface-container-highest": "#e3e2e7","on-secondary-fixed-variant": "#004d67","surface-variant": "#e3e2e7","surface-dim": "#dad9df","inverse-primary": "#adc6ff","on-error-container": "#93000a"
+                colors: {
+                    primary: "#0062d1",
+                    "primary-light": "#e5f0fa",
+                    surface: "#ffffff",
+                    "surface-variant": "#f2f2f7",
+                    "on-surface": "#1c1c1e",
+                    "on-surface-variant": "#8e8e93",
+                    success: "#34c759",
+                    outline: "#e5e5ea",
+                    "outline-variant": "#c7c7cc"
                 },
-                "borderRadius": {"DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px"},
-                "spacing": {"stack-lg": "24px","card-gap": "16px","stack-sm": "12px","base": "8px","container-padding": "20px","stack-md": "16px"},
-                "fontFamily": {"body-lg": ["Inter"],"status-number": ["Inter"],"headline-md": ["Inter"],"headline-lg": ["Inter"],"body-md": ["Inter"],"headline-lg-mobile": ["Inter"],"label-caps": ["Inter"]},
-                "fontSize": {
-                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
-                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
                 }
             }
         }
     }
 </script>
 <style>
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    @keyframes pulse-ring { 0% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.7; } }
-    .animate-pulse-ring { animation: pulse-ring 2s ease-in-out infinite; }
+    body { font-family: 'Inter', sans-serif; background-color: #f2f2f7; }
+    .mobile-container {
+        max-width: 480px;
+        margin: 0 auto;
+        background-color: #f2f2f7;
+        min-height: 100vh;
+        box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
 </style>
 </head>
-<body class="bg-surface text-on-surface font-body-lg min-h-screen flex flex-col">
-<header class="fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex items-center px-container-padding h-14">
-    <button onclick="window.location.href='dashboard_admin_utama.html'" class="text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150 flex items-center justify-center mr-2">
-        <span class="material-symbols-outlined">arrow_back</span>
-    </button>
-    <h1 class="font-headline-md text-headline-md text-primary">Sedang Melayani</h1>
-</header>
-<main class="flex-1 flex flex-col items-center justify-center px-container-padding pt-20 pb-8">
-    <div class="mb-8 flex flex-col items-center">
-        <div class="relative">
-            <div class="w-28 h-28 rounded-full bg-primary/10 flex items-center justify-center animate-pulse-ring">
-                <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-lg">
-                    <span class="material-symbols-outlined text-on-primary text-[40px]" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<body class="antialiased">
+
+<div class="mobile-container pb-24">
+    
+    <!-- Top App Bar -->
+    <header class="bg-surface px-4 py-4 flex items-center justify-between border-b border-outline sticky top-0 z-10">
+        <button class="text-primary p-2 -ml-2 rounded-full hover:bg-surface-variant transition-colors" onclick="window.location.href='dashboard_admin_utama.html'">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+            <h1 class="text-[17px] font-bold text-on-surface">Serving Mode</h1>
+        </div>
+        <button class="text-primary p-2 -mr-2 rounded-full hover:bg-surface-variant transition-colors">
+            <span class="material-symbols-outlined">settings</span>
+        </button>
+    </header>
+
+    <main class="p-4 flex-1 flex flex-col items-center justify-center">
+        <!-- Main Card -->
+        <div class="w-full bg-surface rounded-[24px] shadow-[0px_8px_24px_rgba(0,0,0,0.04)] border border-outline overflow-hidden mb-6 relative">
+            <!-- Blue Top Line -->
+            <div class="h-1.5 w-full bg-primary"></div>
+            
+            <div class="p-6 relative">
+                <!-- Timer Badge (Top Right) -->
+                <div class="absolute top-6 right-6 bg-primary-light text-primary px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-primary/10">
+                    <span class="material-symbols-outlined text-[16px]">schedule</span>
+                    <span id="serviceTimer" class="text-[14px] font-bold tracking-wide font-mono">00:00</span>
+                </div>
+
+                <!-- Queue Number -->
+                <h2 id="serveQueueId" class="text-[56px] font-black text-on-surface leading-tight mb-1 mt-4">B-12</h2>
+                
+                <!-- Patient Name -->
+                <h3 id="servePatientName" class="text-[20px] font-bold text-on-surface mb-6">Bpk. Ahmad Riyadi</h3>
+                
+                <!-- Details -->
+                <div class="flex flex-col gap-3">
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined fill text-[20px] text-outline-variant">stethoscope</span>
+                        <span id="servePoliName" class="text-[15px] font-medium text-on-surface">Poli Umum</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[20px] text-outline-variant">id_card</span>
+                        <span id="servePatientRM" class="text-[15px] font-medium text-on-surface">RM-8829103</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <h2 class="mt-6 font-headline-lg-mobile text-headline-lg-mobile text-primary text-center">Pasien Sedang Dilayani</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-2 text-center">Pelayanan sedang berlangsung</p>
-    </div>
-    <div class="w-full max-w-md bg-surface-container-lowest rounded-xl p-container-padding shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 mb-6">
-        <div class="flex items-center gap-4 mb-4 pb-4 border-b border-surface-variant">
-            <div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center shrink-0">
-                <span id="adminPatientAvatar" class="font-headline-md text-headline-md text-primary">--</span>
-            </div>
-            <div>
-                <h3 id="adminPatientName" class="font-headline-md text-headline-md text-on-surface">Memuat...</h3>
-                <p id="adminPatientPoli" class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1 mt-1">
-                    <span class="material-symbols-outlined text-[16px]">stethoscope</span> ---
-                </p>
-            </div>
+
+        <!-- Action Buttons -->
+        <div class="w-full flex flex-col gap-3">
+            <button onclick="selesaikanPelayanan()" class="w-full bg-primary hover:bg-primary/90 text-white font-semibold text-[16px] py-4 rounded-xl flex items-center justify-center transition-transform active:scale-[0.98] shadow-sm">
+                Selesaikan Pelayanan
+            </button>
+            <button class="w-full bg-surface hover:bg-surface-variant text-primary font-semibold text-[16px] py-4 rounded-xl flex items-center justify-center gap-2 border-2 border-primary/20 transition-colors active:scale-[0.98]">
+                <span class="material-symbols-outlined text-[20px]">post_add</span>
+                Tambah Catatan Medis
+            </button>
         </div>
-        <div class="grid grid-cols-2 gap-4">
-            <div class="bg-surface-container-low rounded-lg p-3 text-center">
-                <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Nomor Antrean</p>
-                <p id="adminQueueId" class="font-status-number text-status-number text-primary" style="font-size: 36px;">---</p>
-            </div>
-            <div class="bg-surface-container-low rounded-lg p-3 text-center">
-                <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Waktu Pelayanan</p>
-                <p id="serviceTimer" class="font-status-number text-status-number text-secondary" style="font-size: 36px;">00:00</p>
-            </div>
-        </div>
-        <div class="mt-4 p-3 bg-primary-fixed/30 rounded-lg flex items-center gap-3">
-            <span class="material-symbols-outlined text-primary">person</span>
-            <div>
-                <p class="font-label-caps text-label-caps text-on-surface-variant">Dokter</p>
-                <p id="adminDoctorName" class="font-body-md text-body-md text-on-surface font-medium">Dr. Sarah Jenkins</p>
-            </div>
-        </div>
-    </div>
-    <div class="w-full max-w-md flex flex-col gap-3">
-        <button onclick="selesaiPelayanan()" class="w-full h-12 bg-primary hover:bg-surface-tint text-on-primary font-headline-md text-headline-md rounded-lg flex items-center justify-center gap-2 transition-colors active:scale-[0.98] shadow-md">
-            <span class="material-symbols-outlined text-[20px]">check_circle</span>
-            Selesai Pelayanan
-        </button>
-        <button onclick="window.location.href='dashboard_admin_utama.html'" class="w-full h-12 bg-transparent text-primary border border-outline-variant font-headline-md text-headline-md rounded-lg flex items-center justify-center transition-colors hover:bg-surface-container-low active:scale-[0.98]">
-            Kembali ke Dashboard
-        </button>
-    </div>
-</main>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bg-surface border-t border-outline fixed bottom-0 w-full max-w-[480px] pb-safe">
+        <ul class="flex justify-around items-center h-16">
+            <li class="flex-1 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors" onclick="window.location.href='dashboard_admin_utama.html'">
+                <span class="material-symbols-outlined text-[24px]">home</span>
+                <span class="text-[10px] font-medium mt-1">Dashboard</span>
+            </li>
+            <li class="flex-1 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors" onclick="window.location.href='scan_barcode_pasien.html'">
+                <span class="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+                <span class="text-[10px] font-medium mt-1">Scan</span>
+            </li>
+            <li class="flex-1 flex flex-col items-center justify-center text-primary cursor-pointer transition-colors" onclick="window.location.href='kelola_daftar_antrean.html?poli=Umum'">
+                <span class="material-symbols-outlined fill text-[24px]">groups</span>
+                <span class="text-[10px] font-medium mt-1">Patients</span>
+            </li>
+        </ul>
+    </nav>
+</div>
+
 <script>
-let timerInterval;
+let startTime = null;
+let timerInterval = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const patientId = localStorage.getItem('scanned_patient_id');
-    const patientName = localStorage.getItem('scanned_patient_name');
-    const patientPoli = localStorage.getItem('scanned_patient_poli');
-    const startTime = localStorage.getItem('service_start_time');
-    if (patientId && patientName) {
-        document.getElementById('adminPatientName').innerText = patientName;
-        document.getElementById('adminQueueId').innerText = patientId;
-        document.getElementById('adminPatientPoli').innerHTML = '<span class="material-symbols-outlined text-[16px]">stethoscope</span> ' + (patientPoli || 'Poli Umum');
-        const initials = patientName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-        document.getElementById('adminPatientAvatar').innerText = initials;
-        let doc = 'Dr. Sarah Jenkins';
-        if (patientPoli && patientPoli.includes('Gigi')) doc = 'Dr. Ronald Cooper';
-        else if (patientPoli && patientPoli.includes('Anak')) doc = 'Dr. Amanda Putri, Sp.A';
-        document.getElementById('adminDoctorName').innerText = doc;
+    // Load patient data
+    const patientId = localStorage.getItem('scanned_patient_id') || 'B-12';
+    const patientName = localStorage.getItem('scanned_patient_name') || 'Bpk. Ahmad Riyadi';
+    const patientPoli = localStorage.getItem('scanned_patient_poli') || 'Poli Umum';
+
+    document.getElementById('servePatientName').innerText = patientName;
+    document.getElementById('serveQueueId').innerText = patientId;
+    document.getElementById('servePoliName').innerText = patientPoli;
+    
+    // Simulate RM
+    document.getElementById('servePatientRM').innerText = 'RM-' + Math.floor(1000000 + Math.random() * 9000000);
+
+    // Initialize Timer
+    const savedStartTime = localStorage.getItem('service_start_time');
+    if (savedStartTime) {
+        startTime = new Date(savedStartTime).getTime();
+    } else {
+        startTime = new Date().getTime();
+        localStorage.setItem('service_start_time', new Date(startTime).toISOString());
     }
-    if (startTime) {
-        timerInterval = setInterval(() => {
-            const start = new Date(startTime);
-            const now = new Date();
-            const diff = Math.floor((now - start) / 1000);
-            const mins = String(Math.floor(diff / 60)).padStart(2, '0');
-            const secs = String(diff % 60).padStart(2, '0');
-            document.getElementById('serviceTimer').innerText = mins + ':' + secs;
-        }, 1000);
-    }
+
+    timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // Initial call
 });
-function selesaiPelayanan() {
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const distance = now - startTime;
+    
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    const formattedTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+    document.getElementById('serviceTimer').innerText = formattedTime;
+}
+
+function selesaikanPelayanan() {
+    clearInterval(timerInterval);
     const patientId = localStorage.getItem('scanned_patient_id');
+    
+    // Save duration for summary
+    const duration = document.getElementById('serviceTimer').innerText;
+    localStorage.setItem('last_service_duration', duration);
+    
     if (patientId) {
         updateQueueStatus(patientId, 'Selesai');
-        const startTime = localStorage.getItem('service_start_time');
-        if (startTime) {
-            const start = new Date(startTime);
-            const now = new Date();
-            const diffMins = Math.round((now - start) / 60000);
-            localStorage.setItem('service_duration', diffMins > 0 ? diffMins : 1);
-        }
-        clearInterval(timerInterval);
-        window.location.href = 'admin_pelayanan_selesai.html';
     }
+    
+    // Redirect to summary screen
+    window.location.href = 'admin_pelayanan_selesai.html';
 }
 </script>
 </body></html>
