@@ -178,21 +178,7 @@
 </div>
 </div>
 </div>
-<!-- Completion Modal Popup -->
-<div id="completionModal" class="fixed inset-0 z-[100] bg-on-surface/50 hidden flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
-    <div class="bg-surface rounded-2xl p-6 w-full max-w-sm shadow-[0px_16px_32px_rgba(0,0,0,0.2)] flex flex-col items-center text-center transform scale-95 transition-transform duration-300" id="completionModalCard">
-        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4 text-green-600">
-            <span class="material-symbols-outlined text-[32px]">check_circle</span>
-        </div>
-        <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Pelayanan Selesai</h3>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
-            Pemeriksaan Anda telah selesai. Terima kasih telah menggunakan layanan kami.
-        </p>
-        <button onclick="window.location.href='riwayat_antrean.html'" class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-3 rounded-lg hover:bg-primary/90 transition-colors active:scale-95 shadow-sm">
-            Lihat Riwayat
-        </button>
-    </div>
-</div>
+
 </main>
 <!-- BottomNavBar -->
 <nav class="bg-surface dark:bg-surface-dim shadow-[0px_-2px_8px_rgba(0,0,0,0.05)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant dark:border-outline md:hidden">
@@ -242,21 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             document.getElementById('servingDoctorName').innerText = doc;
             
-            // If status is 'Selesai', SHOW MODAL instead of redirecting
+            // If status is 'Selesai', REDIRECT DIRECTLY to Pelayanan Selesai
             if (active.status === 'Selesai') {
-                modalShown = true;
-                const modal = document.getElementById('completionModal');
-                const modalInner = document.getElementById('completionModalCard');
-                
-                modal.classList.remove('hidden');
-                // Trigger reflow for animation
-                void modal.offsetWidth; 
-                modal.classList.remove('opacity-0');
-                modal.classList.add('opacity-100');
-                modalInner.classList.remove('scale-95');
-                modalInner.classList.add('scale-100');
-                
-                clearInterval(pollInterval);
+                window.location.href = 'pelayanan_selesai_pasien.html';
+                return;
             } else if (active.status !== 'Dilayani') {
                 // If status reverted or changed back, go back to status check page
                 window.location.href = 'barcode_status_antrean.html';
