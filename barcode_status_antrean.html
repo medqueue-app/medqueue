@@ -221,10 +221,7 @@
 </section>
 <!-- Actions -->
 <section class="flex flex-col gap-3 mt-2">
-<button onclick="window.location.href='scan_qr_kode_pasien.html'" class="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-headline-md text-[16px] bg-primary text-on-primary hover:bg-primary/95 active:scale-[0.98] transition-all shadow-sm">
-<span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-                Scan QR Check-In Mandiri
-</button>
+
 <button class="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-headline-md text-[16px] border border-outline-variant text-on-surface-variant bg-surface hover:bg-surface-container-highest active:scale-[0.98] transition-all">
 <span class="material-symbols-outlined text-[20px]" data-icon="notifications_off">notifications_off</span>
                 Senyapkan Notifikasi
@@ -279,14 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkStatus() {
         const active = getActiveQueue();
         if (active) {
-            // Auto redirect if serving or done
-            if (active.status === 'Dilayani') {
-                window.location.href = 'pasien_sedang_dilayani.html';
-            }
-            if (active.status === 'Selesai') {
-                window.location.href = 'pelayanan_selesai_pasien.html';
-                return;
-            }
+
 
             // Update texts
             document.getElementById('activePoliHeader').innerText = `Nomor Antrean - ${active.poliName}`;
