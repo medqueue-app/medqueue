@@ -1,7 +1,7 @@
-<!DOCTYPE html><html class="light" lang="en"><head>
+<!DOCTYPE html><html class="light" lang="id"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>MedQueue - Dashboard Admin</title>
+<title>MedQueue - Dasbor Admin</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="js/queue.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
@@ -13,145 +13,25 @@
     theme: {
       extend: {
         "colors": {
-                "secondary-fixed": "#c1e8ff",
-                "on-tertiary-container": "#fffbff",
-                "surface-bright": "#faf9fe",
-                "outline-variant": "#c1c6d7",
-                "inverse-surface": "#2f3034",
-                "error-container": "#ffdad6",
-                "on-secondary": "#ffffff",
-                "on-tertiary": "#ffffff",
-                "on-secondary-container": "#005572",
-                "inverse-on-surface": "#f1f0f5",
-                "secondary-fixed-dim": "#74d1ff",
-                "surface-container-low": "#f4f3f8",
-                "error": "#ba1a1a",
-                "surface-tint": "#005bc1",
-                "on-error": "#ffffff",
-                "surface-container": "#eeedf3",
-                "tertiary": "#8a2bb9",
-                "outline": "#717786",
-                "on-secondary-fixed": "#001e2b",
-                "primary-fixed-dim": "#adc6ff",
-                "on-secondary-fixed-variant": "#004d67",
-                "on-primary-container": "#fefcff",
-                "secondary": "#006687",
-                "on-tertiary-fixed": "#310048",
-                "secondary-container": "#60cdff",
-                "on-primary-fixed-variant": "#004493",
-                "on-primary-fixed": "#001a41",
-                "tertiary-fixed": "#f6d9ff",
-                "surface-container-lowest": "#ffffff",
-                "tertiary-container": "#a649d5",
-                "surface-container-highest": "#e3e2e7",
-                "on-background": "#1a1b1f",
-                "on-tertiary-fixed-variant": "#7201a2",
-                "surface-container-high": "#e9e7ed",
-                "tertiary-fixed-dim": "#e8b3ff",
-                "surface-variant": "#e3e2e7",
-                "on-error-container": "#93000a",
-                "primary": "#0058bc",
-                "on-surface": "#1a1b1f",
-                "on-surface-variant": "#414755",
-                "inverse-primary": "#adc6ff",
-                "primary-container": "#0070eb",
-                "on-primary": "#ffffff",
-                "background": "#faf9fe",
-                "surface-dim": "#dad9df",
-                "primary-fixed": "#d8e2ff",
-                "surface": "#faf9fe"
+                "secondary-fixed": "#c1e8ff", "on-tertiary-container": "#fffbff", "surface-bright": "#faf9fe", "outline-variant": "#c1c6d7", "inverse-surface": "#2f3034", "error-container": "#ffdad6", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "on-secondary-container": "#005572", "inverse-on-surface": "#f1f0f5", "secondary-fixed-dim": "#74d1ff", "surface-container-low": "#f4f3f8", "error": "#ba1a1a", "surface-tint": "#005bc1", "on-error": "#ffffff", "surface-container": "#eeedf3", "tertiary": "#8a2bb9", "outline": "#717786", "on-secondary-fixed": "#001e2b", "primary-fixed-dim": "#adc6ff", "on-secondary-fixed-variant": "#004d67", "on-primary-container": "#fefcff", "secondary": "#006687", "on-tertiary-fixed": "#310048", "secondary-container": "#60cdff", "on-primary-fixed-variant": "#004493", "on-primary-fixed": "#001a41", "tertiary-fixed": "#f6d9ff", "surface-container-lowest": "#ffffff", "tertiary-container": "#a649d5", "surface-container-highest": "#e3e2e7", "on-background": "#1a1b1f", "on-tertiary-fixed-variant": "#7201a2", "surface-container-high": "#e9e7ed", "tertiary-fixed-dim": "#e8b3ff", "surface-variant": "#e3e2e7", "on-error-container": "#93000a", "primary": "#0058bc", "on-surface": "#1a1b1f", "on-surface-variant": "#414755", "inverse-primary": "#adc6ff", "primary-container": "#0070eb", "on-primary": "#ffffff", "background": "#faf9fe", "surface-dim": "#dad9df", "primary-fixed": "#d8e2ff", "surface": "#faf9fe"
         },
         "borderRadius": {
-                "DEFAULT": "0.25rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "full": "9999px"
+                "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
         },
         "spacing": {
-                "container-padding": "20px",
-                "base": "8px",
-                "stack-sm": "12px",
-                "stack-md": "16px",
-                "card-gap": "16px",
-                "stack-lg": "24px"
+                "container-padding": "20px", "base": "8px", "stack-sm": "12px", "stack-md": "16px", "card-gap": "16px", "stack-lg": "24px"
         },
         "fontFamily": {
-                "headline-md": [
-                        "Inter"
-                ],
-                "body-md": [
-                        "Inter"
-                ],
-                "status-number": [
-                        "Inter"
-                ],
-                "headline-lg": [
-                        "Inter"
-                ],
-                "label-caps": [
-                        "Inter"
-                ],
-                "headline-lg-mobile": [
-                        "Inter"
-                ],
-                "body-lg": [
-                        "Inter"
-                ]
+                "headline-md": ["Inter"], "body-md": ["Inter"], "status-number": ["Inter"], "headline-lg": ["Inter"], "label-caps": ["Inter"], "headline-lg-mobile": ["Inter"], "body-lg": ["Inter"]
         },
         "fontSize": {
-                "headline-md": [
-                        "20px",
-                        {
-                                "lineHeight": "28px",
-                                "fontWeight": "600"
-                        }
-                ],
-                "body-md": [
-                        "15px",
-                        {
-                                "lineHeight": "22px",
-                                "fontWeight": "400"
-                        }
-                ],
-                "status-number": [
-                        "48px",
-                        {
-                                "lineHeight": "48px",
-                                "letterSpacing": "-0.04em",
-                                "fontWeight": "800"
-                        }
-                ],
-                "headline-lg": [
-                        "32px",
-                        {
-                                "lineHeight": "40px",
-                                "letterSpacing": "-0.02em",
-                                "fontWeight": "700"
-                        }
-                ],
-                "label-caps": [
-                        "12px",
-                        {
-                                "lineHeight": "16px",
-                                "letterSpacing": "0.05em",
-                                "fontWeight": "600"
-                        }
-                ],
-                "headline-lg-mobile": [
-                        "24px",
-                        {
-                                "lineHeight": "32px",
-                                "letterSpacing": "-0.02em",
-                                "fontWeight": "700"
-                        }
-                ],
-                "body-lg": [
-                        "17px",
-                        {
-                                "lineHeight": "24px",
-                                "fontWeight": "400"
-                        }
-                ]
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                "status-number": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}]
         }
 },
     },
@@ -167,10 +47,16 @@
 <!-- NavigationDrawer (Hidden on mobile, visible on desktop) -->
 <aside class="hidden md:flex flex-col bg-surface-container-lowest dark:bg-inverse-surface h-screen w-80 rounded-r-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] z-40 fixed left-0 top-0 py-4">
 <div class="px-6 mb-8 flex items-center gap-4">
-<img class="w-12 h-12 rounded-full object-cover" data-alt="A professional headshot of a medical administrator wearing a subtle blue lanyard, set against a clean white clinical background with soft, natural lighting. The image conveys trust and efficiency, matching a high-end medical software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAni8rnCBlzhp2X0n333H2OejwjjfQqyVpB51dpHywJv7UGFFKhTmoi7iNx0FtmJ0mdKYiAm198OsLgpPcLMalTD8NS1PERTSpxUnNA6gr_u2BPkTFi4RI75Yjso7tWLznwhirm-tzVgC9w6WGpnDrwR8U7iY-mPuZw6z00TpHP_OGJgQyqnG618Bho12V1e91eEOFV_aB0nyaHAAGFHAwOLKQP8rc4zWt7HfpJOGoGTI_D4B9MSxTfRvLANASmjaC9MqxbhXC0GIPs">
+<div class="relative w-12 h-12 rounded-full overflow-hidden group cursor-pointer" onclick="document.getElementById('adminAvatarUpload').click()">
+    <img id="sidebarAvatar" class="w-full h-full object-cover" data-alt="A professional headshot of a medical administrator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAni8rnCBlzhp2X0n333H2OejwjjfQqyVpB51dpHywJv7UGFFKhTmoi7iNx0FtmJ0mdKYiAm198OsLgpPcLMalTD8NS1PERTSpxUnNA6gr_u2BPkTFi4RI75Yjso7tWLznwhirm-tzVgC9w6WGpnDrwR8U7iY-mPuZw6z00TpHP_OGJgQyqnG618Bho12V1e91eEOFV_aB0nyaHAAGFHAwOLKQP8rc4zWt7HfpJOGoGTI_D4B9MSxTfRvLANASmjaC9MqxbhXC0GIPs">
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <span class="material-symbols-outlined text-white text-xs">edit</span>
+    </div>
+</div>
+<input type="file" id="adminAvatarUpload" accept="image/*" class="hidden" onchange="previewAndSaveAdminAvatar(event)">
 <div>
-<h2 id="sidebarAdminName" class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Admin Panel</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Medical Center North</p>
+<h2 id="sidebarAdminName" class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim">Panel Admin</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Klinik MedQueue</p>
 </div>
 </div>
 <nav class="flex-1 overflow-y-auto">
@@ -178,25 +64,25 @@
 <li>
 <a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 active:opacity-80 transition-opacity" href="dashboard_admin_utama.html">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span class="font-body-md text-body-md font-semibold">Dashboard</span>
+<span class="font-body-md text-body-md font-semibold">Dasbor</span>
 </a>
 </li>
 <li>
 <a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors active:opacity-80" href="kelola_daftar_antrean.html?poli=Umum">
 <span class="material-symbols-outlined">group</span>
-<span class="font-body-md text-body-md">Queue Management</span>
+<span class="font-body-md text-body-md">Kelola Antrean</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors active:opacity-80" href="#">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors active:opacity-80" href="analitik_admin.html">
 <span class="material-symbols-outlined">analytics</span>
-<span class="font-body-md text-body-md">Analytics</span>
+<span class="font-body-md text-body-md">Analitik</span>
 </a>
 </li>
 <li>
-<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors active:opacity-80" href="#">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors active:opacity-80" href="pengaturan_staf_admin.html">
 <span class="material-symbols-outlined">settings</span>
-<span class="font-body-md text-body-md">Staff Settings</span>
+<span class="font-body-md text-body-md">Pengaturan Staf</span>
 </a>
 </li>
 </ul>
@@ -204,7 +90,7 @@
 <div class="mt-auto px-2">
 <a onclick="logout()" class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full px-4 py-3 transition-colors active:opacity-80 cursor-pointer" href="#">
 <span class="material-symbols-outlined">logout</span>
-<span class="font-body-md text-body-md">Logout</span>
+<span class="font-body-md text-body-md">Keluar</span>
 </a>
 </div>
 </aside>
@@ -212,9 +98,11 @@
 <main class="flex-1 md:ml-80 flex flex-col min-h-screen">
 <!-- TopAppBar (Mobile only) -->
 <header class="md:hidden fixed top-0 w-full z-50 bg-surface dark:bg-inverse-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex justify-between items-center px-container-padding h-14">
-<div onclick="window.location.href='dashboard_admin_utama.html'" class="flex items-center gap-3 cursor-pointer hover:opacity-80">
-<img class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of a medical administrator wearing a subtle blue lanyard, set against a clean white clinical background with soft, natural lighting. The image conveys trust and efficiency, matching a high-end medical software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFs5kw4RzysJlkGddhmxwlJxzcH6dZMN58OmgiBvWA7bFnivgqqHMEifzj-v1FLapSTp_HuAjxmvo5jzxFqpPwGqYMLy6m3EFpPBSVXx8R7ByU5WHkHDAeiYK_9aZEzsXPw8Ncplf1dhqBjyW-SnEX6I-B2uSgpEYi0heeghulrIMub5PfqLNyCGbi-m89igAwrAjWDwQoySWDtUcuP5fsnN4vr04mhmgnzuxTdm8s39-zxMZbRe1vIhfbAEV-lXiS7hZCdf4CU4w">
-<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim">MedQueue</h1>
+<div class="flex items-center gap-3 cursor-pointer hover:opacity-80">
+<div class="relative w-8 h-8 rounded-full overflow-hidden" onclick="document.getElementById('adminAvatarUpload').click()">
+    <img id="mobileHeaderAvatar" class="w-full h-full object-cover" data-alt="A professional headshot of a medical administrator." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFs5kw4RzysJlkGddhmxwlJxzcH6dZMN58OmgiBvWA7bFnivgqqHMEifzj-v1FLapSTp_HuAjxmvo5jzxFqpPwGqYMLy6m3EFpPBSVXx8R7ByU5WHkHDAeiYK_9aZEzsXPw8Ncplf1dhqBjyW-SnEX6I-B2uSgpEYi0heeghulrIMub5PfqLNyCGbi-m89igAwrAjWDwQoySWDtUcuP5fsnN4vr04mhmgnzuxTdm8s39-zxMZbRe1vIhfbAEV-lXiS7hZCdf4CU4w">
+</div>
+<h1 class="font-headline-md text-headline-md-mobile text-primary dark:text-primary-fixed-dim" onclick="window.location.href='dashboard_admin_utama.html'">MedQueue</h1>
 </div>
 <button class="text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">
 <span class="material-symbols-outlined">notifications</span>
@@ -224,8 +112,8 @@
 <div class="flex-1 px-container-padding py-stack-lg mt-14 md:mt-0 pb-24 md:pb-8">
 <div class="flex justify-between items-end mb-8">
 <div>
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-2">Overview</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">Today's clinical queue metrics</p>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-2">Ringkasan</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Metrik antrean klinik hari ini</p>
 </div>
 <div class="hidden md:block">
 <button class="text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">
@@ -238,13 +126,13 @@
 <!-- Total Card -->
 <div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant md:col-span-1">
 <div class="flex justify-between items-start mb-4">
-<h3 class="font-body-md text-body-md text-on-surface-variant font-semibold">Total Patients Today</h3>
+<h3 class="font-body-md text-body-md text-on-surface-variant font-semibold">Total Pasien Hari Ini</h3>
 <span class="material-symbols-outlined text-primary bg-primary-fixed p-1.5 rounded-full text-sm">groups</span>
 </div>
 <div id="statTotalPatients" class="font-status-number text-status-number text-on-background">142</div>
 <div class="mt-2 text-sm text-secondary flex items-center gap-1">
 <span class="material-symbols-outlined text-[16px]">trending_up</span>
-<span>+12% vs yesterday</span>
+<span>+12% dibanding kemarin</span>
 </div>
 </div>
 <!-- Currently Served -->
@@ -253,25 +141,25 @@
 <span class="material-symbols-outlined text-[120px]">medical_services</span>
 </div>
 <div class="flex justify-between items-start mb-4 relative z-10">
-<h3 class="font-body-md text-body-md font-semibold">Currently Served</h3>
+<h3 class="font-body-md text-body-md font-semibold">Sedang Dilayani</h3>
 <span class="material-symbols-outlined">healing</span>
 </div>
 <div id="statCurrentlyServed" class="font-status-number text-status-number relative z-10">18</div>
 <div class="mt-2 text-sm text-primary-fixed flex items-center gap-2 relative z-10">
 <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-                        Across 5 Active Clinics
+                        Tersebar di 5 Klinik Aktif
                     </div>
 </div>
 <!-- Waiting -->
 <div class="bg-surface-container-lowest rounded-xl p-stack-md shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant md:col-span-1">
 <div class="flex justify-between items-start mb-4">
-<h3 class="font-body-md text-body-md text-on-surface-variant font-semibold">Waiting</h3>
+<h3 class="font-body-md text-body-md text-on-surface-variant font-semibold">Menunggu</h3>
 <span class="material-symbols-outlined text-outline">hourglass_empty</span>
 </div>
 <div id="statWaiting" class="font-status-number text-status-number text-on-background">34</div>
 <div class="mt-2 text-sm text-on-surface-variant flex items-center gap-1">
 <span class="material-symbols-outlined text-[16px]">schedule</span>
-<span>Avg wait: 24 mins</span>
+<span>Rata-rata tunggu: 24 mnt</span>
 </div>
 </div>
 </div>
@@ -279,21 +167,21 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-card-gap">
 <!-- Quick Actions (Left Column) -->
 <div class="lg:col-span-1 flex flex-col gap-card-gap">
-<h2 class="font-headline-md text-headline-md text-on-background mb-2">Quick Actions</h2>
+<h2 class="font-headline-md text-headline-md text-on-background mb-2">Tindakan Cepat</h2>
 <button onclick="window.location.href='scan_barcode_pasien.html'" class="w-full bg-primary text-on-primary rounded-xl p-stack-md flex items-center justify-center gap-3 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:bg-surface-tint transition-colors active:scale-[0.98]">
 <span class="material-symbols-outlined">qr_code_scanner</span>
-<span class="font-body-md text-body-md font-semibold">Scan Barcode</span>
+<span class="font-body-md text-body-md font-semibold">Pindai Barcode</span>
 </button>
 <button class="w-full bg-secondary-fixed text-on-secondary-fixed rounded-xl p-stack-md flex items-center justify-center gap-3 shadow-[0px_4px_12px_rgba(0,0,0,0.05)] hover:bg-secondary-fixed-dim transition-colors active:scale-[0.98]">
 <span class="material-symbols-outlined">person_add</span>
-<span class="font-body-md text-body-md font-semibold">Add Manual Patient</span>
+<span class="font-body-md text-body-md font-semibold">Tambah Pasien Manual</span>
 </button>
 </div>
 <!-- Active Clinics (Right Column) -->
 <div class="lg:col-span-2">
 <div class="flex justify-between items-center mb-stack-sm">
-<h2 class="font-headline-md text-headline-md text-on-background">Active Clinics</h2>
-<a class="text-primary font-body-md text-body-md font-semibold hover:underline" href="kelola_daftar_antrean.html?poli=Umum">View All</a>
+<h2 class="font-headline-md text-headline-md text-on-background">Klinik Aktif</h2>
+<a class="text-primary font-body-md text-body-md font-semibold hover:underline" href="kelola_daftar_antrean.html?poli=Umum">Lihat Semua</a>
 </div>
 <div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-surface-variant divide-y divide-surface-variant overflow-hidden">
 <!-- Clinic Row 1 -->
@@ -310,8 +198,8 @@
 </div>
 </div>
 <div class="text-right">
-<div id="waitingCountUmum" class="font-body-md text-body-md font-semibold text-on-background">8 Waiting</div>
-<p class="text-sm text-on-surface-variant">Dr. Sarah Jenkins</p>
+<div id="waitingCountUmum" class="font-body-md text-body-md font-semibold text-on-background">8 Menunggu</div>
+<p class="text-sm text-on-surface-variant">Dr. Nita Astuti</p>
 </div>
 </div>
 <!-- Clinic Row 2 -->
@@ -328,7 +216,7 @@
 </div>
 </div>
 <div class="text-right">
-<div id="waitingCountGigi" class="font-body-md text-body-md font-semibold text-on-background">15 Waiting</div>
+<div id="waitingCountGigi" class="font-body-md text-body-md font-semibold text-on-background">15 Menunggu</div>
 <p class="text-sm text-on-surface-variant">Dr. Ronald Cooper</p>
 </div>
 </div>
@@ -346,8 +234,8 @@
 </div>
 </div>
 <div class="text-right">
-<div id="waitingCountAnak" class="font-body-md text-body-md font-semibold text-on-background">5 Waiting</div>
-<p class="text-sm text-on-surface-variant">Dr. Amanda Putri, Sp.A</p>
+<div id="waitingCountAnak" class="font-body-md text-body-md font-semibold text-on-background">5 Menunggu</div>
+<p class="text-sm text-on-surface-variant">Dr. Rani Mutiara, Sp.A</p>
 </div>
 </div>
 </div>
@@ -361,6 +249,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminName = localStorage.getItem('adminName');
     if (adminName) {
         document.getElementById('sidebarAdminName').innerText = adminName;
+    }
+
+    const adminAvatar = localStorage.getItem('adminAvatar');
+    if (adminAvatar) {
+        const desk = document.getElementById('sidebarAvatar');
+        const mob = document.getElementById('mobileHeaderAvatar');
+        if (desk) desk.src = adminAvatar;
+        if (mob) mob.src = adminAvatar;
     }
     
     // 2. Load metrics from LocalStorage
@@ -380,9 +276,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const countGigi = db.queues.filter(q => q.poliName === 'Poli Gigi' && (q.status === 'Menunggu' || q.status === 'Hampir Tiba')).length;
     const countAnak = db.queues.filter(q => q.poliName === 'Poli Anak' && (q.status === 'Menunggu' || q.status === 'Hampir Tiba')).length;
     
-    document.getElementById('waitingCountUmum').innerText = `${countUmum} Waiting`;
-    document.getElementById('waitingCountGigi').innerText = `${countGigi} Waiting`;
-    document.getElementById('waitingCountAnak').innerText = `${countAnak} Waiting`;
+    document.getElementById('waitingCountUmum').innerText = `${countUmum} Menunggu`;
+    document.getElementById('waitingCountGigi').innerText = `${countGigi} Menunggu`;
+    document.getElementById('waitingCountAnak').innerText = `${countAnak} Menunggu`;
 });
+
+function previewAndSaveAdminAvatar(event) {
+    const file = event.target.files[0];
+    if (file) {
+        if (file.size > 1024 * 1024) {
+            alert('Ukuran file maksimal adalah 1MB.');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            const desk = document.getElementById('sidebarAvatar');
+            const mob = document.getElementById('mobileHeaderAvatar');
+            if (desk) desk.src = base64String;
+            if (mob) mob.src = base64String;
+            localStorage.setItem('adminAvatar', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+}
 </script>
 </body></html>

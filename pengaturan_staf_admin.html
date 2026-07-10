@@ -1,0 +1,226 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedQueue - Pengaturan Staf</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+            "primary": "#0058bc", "primary-fixed": "#d8e2ff", "on-primary": "#ffffff",
+            "secondary": "#006687", "secondary-container": "#60cdff", "on-secondary-container": "#005572",
+            "surface": "#faf9fe", "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f3f8", "surface-container-high": "#e9e7ed",
+            "on-surface": "#1a1b1f", "on-surface-variant": "#414755", "outline": "#717786", "outline-variant": "#c1c6d7",
+            "background": "#faf9fe", "on-background": "#1a1b1f", "error": "#ba1a1a", "error-container": "#ffdad6"
+        },
+        "fontFamily": {
+            "headline-md": ["Inter"], "body-md": ["Inter"], "status-number": ["Inter"], "headline-lg": ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col bg-surface-container-lowest h-screen w-80 rounded-r-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] z-40 fixed left-0 top-0 py-4">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="relative w-12 h-12 rounded-full overflow-hidden group cursor-pointer" onclick="document.getElementById('adminAvatarUpload').click()">
+    <img id="sidebarAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAni8rnCBlzhp2X0n333H2OejwjjfQqyVpB51dpHywJv7UGFFKhTmoi7iNx0FtmJ0mdKYiAm198OsLgpPcLMalTD8NS1PERTSpxUnNA6gr_u2BPkTFi4RI75Yjso7tWLznwhirm-tzVgC9w6WGpnDrwR8U7iY-mPuZw6z00TpHP_OGJgQyqnG618Bho12V1e91eEOFV_aB0nyaHAAGFHAwOLKQP8rc4zWt7HfpJOGoGTI_D4B9MSxTfRvLANASmjaC9MqxbhXC0GIPs">
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <span class="material-symbols-outlined text-white text-xs">edit</span>
+    </div>
+</div>
+<input type="file" id="adminAvatarUpload" accept="image/*" class="hidden" onchange="previewAndSaveAdminAvatar(event)">
+<div>
+<h2 id="sidebarAdminName" class="font-headline-md text-xl font-bold text-primary">Panel Admin</h2>
+<p class="text-sm text-on-surface-variant">Klinik MedQueue</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="dashboard_admin_utama.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-semibold">Dasbor</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="kelola_daftar_antrean.html?poli=Umum">
+<span class="material-symbols-outlined">group</span>
+<span class="font-semibold">Kelola Antrean</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="analitik_admin.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-semibold">Analitik</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 transition-colors" href="pengaturan_staf_admin.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-semibold">Pengaturan Staf</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto px-2">
+<a onclick="logout()" class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full px-4 py-3 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-semibold">Keluar</span>
+</a>
+</div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-80 flex flex-col min-h-screen">
+<!-- Mobile Header -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-surface shadow-sm flex justify-between items-center px-5 h-14">
+<div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='dashboard_admin_utama.html'">
+<div class="relative w-8 h-8 rounded-full overflow-hidden" onclick="event.stopPropagation(); document.getElementById('adminAvatarUpload').click()">
+    <img id="mobileHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFs5kw4RzysJlkGddhmxwlJxzcH6dZMN58OmgiBvWA7bFnivgqqHMEifzj-v1FLapSTp_HuAjxmvo5jzxFqpPwGqYMLy6m3EFpPBSVXx8R7ByU5WHkHDAeiYK_9aZEzsXPw8Ncplf1dhqBjyW-SnEX6I-B2uSgpEYi0heeghulrIMub5PfqLNyCGbi-m89igAwrAjWDwQoySWDtUcuP5fsnN4vr04mhmgnzuxTdm8s39-zxMZbRe1vIhfbAEV-lXiS7hZCdf4CU4w">
+</div>
+<h1 class="font-bold text-xl text-primary">Staf Admin</h1>
+</div>
+<button onclick="window.location.href='dashboard_admin_utama.html'" class="text-on-surface-variant p-2 rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+
+<div class="flex-1 px-5 py-6 mt-14 md:mt-0 pb-24 md:pb-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-3xl font-bold text-on-background mb-2">Manajemen Staf</h1>
+<p class="text-on-surface-variant">Kelola daftar admin dan dokter aktif</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-primary/90 active:scale-95 transition-all shadow-sm">
+    <span class="material-symbols-outlined">add</span>
+    Tambah Staf Baru
+</button>
+</div>
+
+<!-- Staff List -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+    <!-- Header -->
+    <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-surface-container-low border-b border-outline-variant/30 font-semibold text-on-surface-variant text-sm uppercase tracking-wider">
+        <div class="col-span-5">Profil Staf</div>
+        <div class="col-span-3">Peran (Role)</div>
+        <div class="col-span-2">Status</div>
+        <div class="col-span-2 text-right">Aksi</div>
+    </div>
+    
+    <!-- Item 1 -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-4 border-b border-outline-variant/20 items-center hover:bg-surface-container-low/50 transition-colors">
+        <div class="col-span-5 w-full flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-lg">AS</div>
+            <div>
+                <h3 class="font-bold text-on-surface">Agus Setiawan</h3>
+                <p class="text-sm text-on-surface-variant">agus.admin@medqueue.id</p>
+            </div>
+        </div>
+        <div class="col-span-3 w-full md:w-auto mt-2 md:mt-0">
+            <span class="px-3 py-1 bg-primary-fixed text-primary font-semibold text-xs rounded-lg inline-block">Administrator</span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-2 md:mt-0">
+            <span class="flex items-center gap-1 text-green-600 text-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span> Aktif
+            </span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-4 md:mt-0 flex gap-2 md:justify-end">
+            <button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-full"><span class="material-symbols-outlined">edit</span></button>
+            <button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container rounded-full"><span class="material-symbols-outlined">delete</span></button>
+        </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-4 border-b border-outline-variant/20 items-center hover:bg-surface-container-low/50 transition-colors">
+        <div class="col-span-5 w-full flex items-center gap-4">
+            <img class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQJw-zcOMQvAj52gR6Q5a6KgraTg7FmWCyG509ZFJZLWbuWE_ms4oK0TYOfB5byc1PjmYRxO4YGE2lV8G_3Qbm82oZu0n3gnIVbZ1Z9JdHFp3zEm2rFZd8Y812gfH4BaZtV-QIjyz7UiffKBAXfOq5GBsCg1wUkyqM80qIQLL9eFwYTVOIWlcEsyAARz19kTCUcjKGBT0vFN0hHekNSQ2-3eXRxb2JHPF588uj0nA_7JegHczehHYOSYUANeC63XPi78IqVE6w_w1P">
+            <div>
+                <h3 class="font-bold text-on-surface">Dr. Nita Astuti</h3>
+                <p class="text-sm text-on-surface-variant">nita.astuti@medqueue.id</p>
+            </div>
+        </div>
+        <div class="col-span-3 w-full md:w-auto mt-2 md:mt-0">
+            <span class="px-3 py-1 bg-secondary-container/50 text-secondary font-semibold text-xs rounded-lg inline-block">Dokter Umum</span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-2 md:mt-0">
+            <span class="flex items-center gap-1 text-green-600 text-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span> Aktif
+            </span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-4 md:mt-0 flex gap-2 md:justify-end">
+            <button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-full"><span class="material-symbols-outlined">edit</span></button>
+            <button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container rounded-full"><span class="material-symbols-outlined">delete</span></button>
+        </div>
+    </div>
+    
+    <!-- Item 3 -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-surface-container-low/50 transition-colors">
+        <div class="col-span-5 w-full flex items-center gap-4">
+            <img class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1559839734-2b71f153678f?auto=format&fit=crop&q=80&w=200&h=200">
+            <div>
+                <h3 class="font-bold text-on-surface">Dr. Rani Mutiara, Sp.A</h3>
+                <p class="text-sm text-on-surface-variant">rani.mutiara@medqueue.id</p>
+            </div>
+        </div>
+        <div class="col-span-3 w-full md:w-auto mt-2 md:mt-0">
+            <span class="px-3 py-1 bg-secondary-container/50 text-secondary font-semibold text-xs rounded-lg inline-block">Dokter Anak</span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-2 md:mt-0">
+            <span class="flex items-center gap-1 text-outline text-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-outline"></span> Cuti / Non-aktif
+            </span>
+        </div>
+        <div class="col-span-2 w-full md:w-auto mt-4 md:mt-0 flex gap-2 md:justify-end">
+            <button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high rounded-full"><span class="material-symbols-outlined">edit</span></button>
+            <button class="p-2 text-on-surface-variant hover:text-error transition-colors hover:bg-error-container rounded-full"><span class="material-symbols-outlined">delete</span></button>
+        </div>
+    </div>
+</div>
+
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const adminName = localStorage.getItem('adminName');
+    if (adminName) {
+        document.getElementById('sidebarAdminName').innerText = adminName;
+    }
+    
+    const adminAvatar = localStorage.getItem('adminAvatar');
+    if (adminAvatar) {
+        const desk = document.getElementById('sidebarAvatar');
+        const mob = document.getElementById('mobileHeaderAvatar');
+        if (desk) desk.src = adminAvatar;
+        if (mob) mob.src = adminAvatar;
+    }
+});
+
+function previewAndSaveAdminAvatar(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            const desk = document.getElementById('sidebarAvatar');
+            const mob = document.getElementById('mobileHeaderAvatar');
+            if (desk) desk.src = base64String;
+            if (mob) mob.src = base64String;
+            localStorage.setItem('adminAvatar', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+</body></html>

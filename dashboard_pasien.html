@@ -115,8 +115,11 @@
 <!-- TopAppBar Component -->
 <header class="fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] flex justify-between items-center px-container-padding h-14 transition-colors">
 <div class="flex items-center gap-3">
-<div onclick="window.location.href='pengaturan.html'" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer">
+<div class="relative w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer group" onclick="document.getElementById('avatarUploadInput').click()">
     <img id="mobileHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_oF2gdU-OVYSEcsdBT6Y6pNCmeFA28WzAEzMIHd7kG0kQWOusYOnZST56v6uekgdl4F6rWOtVjCICDwb9Qex7pJQyHl7dLVg33bLQBrL5PWgThRdWOIWlOvG9ZciifKDnCMZ_vwTjRT8r25fGhhARK0B0SCHyJ0O14-5bsARrwEql_vvPsFLfBMLnaaRk830-ft1dwKdJxhhCJqKlXkC6lD_KSzKyHEM0fpSejhp85zdcxXcET6xIUXT9fgfWTNTLiWOZUaCLq5rH" alt="Avatar">
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <span class="material-symbols-outlined text-white text-[16px]">edit</span>
+    </div>
 </div>
 <span class="font-headline-md text-headline-md-mobile text-primary">MedLine</span>
 </div>
@@ -205,8 +208,11 @@
 <header class="hidden md:flex fixed top-0 w-full z-50 bg-surface shadow-[0px_4px_12px_rgba(0,0,0,0.05)] justify-between items-center px-container-padding h-16 transition-colors">
 <div class="flex items-center gap-8">
 <div class="flex items-center gap-3">
-<div onclick="window.location.href='pengaturan.html'" class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer">
+<div class="relative w-8 h-8 rounded-full overflow-hidden border border-outline-variant shadow-sm cursor-pointer group" onclick="document.getElementById('avatarUploadInput').click()">
     <img id="desktopHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_oF2gdU-OVYSEcsdBT6Y6pNCmeFA28WzAEzMIHd7kG0kQWOusYOnZST56v6uekgdl4F6rWOtVjCICDwb9Qex7pJQyHl7dLVg33bLQBrL5PWgThRdWOIWlOvG9ZciifKDnCMZ_vwTjRT8r25fGhhARK0B0SCHyJ0O14-5bsARrwEql_vvPsFLfBMLnaaRk830-ft1dwKdJxhhCJqKlXkC6lD_KSzKyHEM0fpSejhp85zdcxXcET6xIUXT9fgfWTNTLiWOZUaCLq5rH" alt="Avatar">
+    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <span class="material-symbols-outlined text-white text-[16px]">edit</span>
+    </div>
 </div>
 <span class="font-headline-md text-headline-md text-primary font-extrabold tracking-tight">MedQueue</span>
 </div>
@@ -227,6 +233,7 @@
 </button>
 </div>
 </header>
+<input type="file" id="avatarUploadInput" accept="image/*" class="hidden" onchange="previewAndSaveAvatarDashboard(event)">
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Load dynamic user name
@@ -281,5 +288,35 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 });
+
+function previewAndSaveAvatarDashboard(event) {
+    const file = event.target.files[0];
+    if (file) {
+        if (file.size > 1024 * 1024) {
+            alert('Ukuran file maksimal adalah 1MB.');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            const mob = document.getElementById('mobileHeaderAvatar');
+            const desk = document.getElementById('desktopHeaderAvatar');
+            if (mob) mob.src = base64String;
+            if (desk) desk.src = base64String;
+            
+            const navIcon = document.getElementById('bottomNavProfileIcon');
+            if (navIcon) {
+                if(navIcon.tagName.toLowerCase() === 'span') {
+                    navIcon.outerHTML = `<img class="w-6 h-6 rounded-full object-cover mb-1 border border-primary/20" src="${base64String}" alt="Avatar" id="bottomNavProfileIcon">`;
+                } else {
+                    navIcon.src = base64String;
+                }
+            }
+            
+            localStorage.setItem('userAvatar', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+}
 </script>
 </body></html>
