@@ -248,6 +248,29 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+    <!-- Bottom Navigation Bar (Mobile only) -->
+    <nav class="md:hidden bg-surface border-t border-outline fixed bottom-0 left-0 w-full z-50" style="padding-bottom: max(env(safe-area-inset-bottom), 16px);">
+        <ul class="flex justify-around items-center h-16 w-full">
+            <li class="flex-1 flex flex-col items-center justify-center text-primary cursor-pointer transition-colors h-full" onclick="window.location.href='dashboard_admin_utama.html'">
+                <span class="material-symbols-outlined fill text-[24px]">home</span>
+                <span class="text-[10px] font-medium mt-1">Home</span>
+            </li>
+            <li class="flex-1 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors h-full" onclick="window.location.href='scan_barcode_pasien.html'">
+                <span class="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+                <span class="text-[10px] font-medium mt-1">Scan</span>
+            </li>
+            <li class="flex-1 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors h-full" onclick="window.location.href='riwayat_antrean_admin.html'">
+                <span class="material-symbols-outlined text-[24px]">history</span>
+                <span class="text-[10px] font-medium mt-1">History</span>
+            </li>
+            <li class="flex-1 flex flex-col items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer transition-colors h-full" onclick="window.location.href='pengaturan_staf_admin.html'">
+                <span class="material-symbols-outlined text-[24px]">person</span>
+                <span class="text-[10px] font-medium mt-1">Profile</span>
+            </li>
+        </ul>
+    </nav>
 </main>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
