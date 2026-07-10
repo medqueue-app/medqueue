@@ -1,0 +1,254 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MedQueue - Riwayat Antrean (Admin)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+            "primary": "#0058bc", "primary-fixed": "#d8e2ff", "on-primary": "#ffffff",
+            "secondary": "#006687", "secondary-container": "#60cdff", "on-secondary-container": "#005572",
+            "surface": "#faf9fe", "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f3f8", "surface-container-high": "#e9e7ed",
+            "on-surface": "#1a1b1f", "on-surface-variant": "#414755", "outline": "#717786", "outline-variant": "#c1c6d7",
+            "background": "#faf9fe", "on-background": "#1a1b1f", "error": "#ba1a1a", "error-container": "#ffdad6"
+        },
+        "fontFamily": {
+            "headline-md": ["Inter"], "body-md": ["Inter"], "status-number": ["Inter"], "headline-lg": ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+
+<!-- NavigationDrawer -->
+<aside class="hidden md:flex flex-col bg-surface-container-lowest h-screen w-80 rounded-r-xl shadow-[0px_8px_24px_rgba(0,0,0,0.12)] z-40 fixed left-0 top-0 py-4">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="relative w-12 h-12 rounded-full overflow-hidden group cursor-pointer" onclick="document.getElementById('adminAvatarUpload').click()">
+    <img id="sidebarAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAni8rnCBlzhp2X0n333H2OejwjjfQqyVpB51dpHywJv7UGFFKhTmoi7iNx0FtmJ0mdKYiAm198OsLgpPcLMalTD8NS1PERTSpxUnNA6gr_u2BPkTFi4RI75Yjso7tWLznwhirm-tzVgC9w6WGpnDrwR8U7iY-mPuZw6z00TpHP_OGJgQyqnG618Bho12V1e91eEOFV_aB0nyaHAAGFHAwOLKQP8rc4zWt7HfpJOGoGTI_D4B9MSxTfRvLANASmjaC9MqxbhXC0GIPs">
+</div>
+<input type="file" id="adminAvatarUpload" accept="image/*" class="hidden" onchange="previewAndSaveAdminAvatar(event)">
+<div>
+<h2 id="sidebarAdminName" class="font-headline-md text-xl font-bold text-primary">Panel Admin</h2>
+<p class="text-sm text-on-surface-variant">Klinik MedQueue</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto">
+<ul class="space-y-2">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="dashboard_admin_utama.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-semibold">Dasbor</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="kelola_daftar_antrean.html?poli=Umum">
+<span class="material-symbols-outlined">group</span>
+<span class="font-semibold">Kelola Antrean</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 transition-colors" href="riwayat_antrean_admin.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-semibold">Riwayat Antrean</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="analitik_admin.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-semibold">Analitik</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full mx-2 px-4 py-3 transition-colors" href="pengaturan_staf_admin.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-semibold">Pengaturan Staf</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto px-2">
+<a onclick="logout()" class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-full px-4 py-3 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-semibold">Keluar</span>
+</a>
+</div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-80 flex flex-col min-h-screen">
+<!-- Mobile Header -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-surface shadow-sm flex justify-between items-center px-5 h-14">
+<div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='dashboard_admin_utama.html'">
+<div class="relative w-8 h-8 rounded-full overflow-hidden" onclick="event.stopPropagation(); document.getElementById('adminAvatarUpload').click()">
+    <img id="mobileHeaderAvatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoFs5kw4RzysJlkGddhmxwlJxzcH6dZMN58OmgiBvWA7bFnivgqqHMEifzj-v1FLapSTp_HuAjxmvo5jzxFqpPwGqYMLy6m3EFpPBSVXx8R7ByU5WHkHDAeiYK_9aZEzsXPw8Ncplf1dhqBjyW-SnEX6I-B2uSgpEYi0heeghulrIMub5PfqLNyCGbi-m89igAwrAjWDwQoySWDtUcuP5fsnN4vr04mhmgnzuxTdm8s39-zxMZbRe1vIhfbAEV-lXiS7hZCdf4CU4w">
+</div>
+<h1 class="font-bold text-xl text-primary">Riwayat</h1>
+</div>
+<button onclick="window.location.href='dashboard_admin_utama.html'" class="text-on-surface-variant p-2 rounded-full">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+
+<div class="flex-1 px-5 py-6 mt-14 md:mt-0 pb-24 md:pb-8 max-w-6xl mx-auto w-full">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold text-on-background mb-2">Riwayat Antrean Pasien</h1>
+<p class="text-on-surface-variant">Daftar semua pasien yang telah selesai dilayani atau dibatalkan.</p>
+</div>
+<div class="flex gap-2 w-full md:w-auto">
+    <div class="relative w-full md:w-64">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+        <input type="text" placeholder="Cari nama atau no antrean..." class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+    </div>
+    <button class="bg-surface-container-high text-on-surface p-2 rounded-lg hover:bg-outline-variant transition-colors">
+        <span class="material-symbols-outlined">filter_list</span>
+    </button>
+</div>
+</div>
+
+<!-- History Table / List -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+    <!-- Desktop Header -->
+    <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-surface-container-low border-b border-outline-variant/30 font-semibold text-on-surface-variant text-sm uppercase tracking-wider">
+        <div class="col-span-2">Tanggal & Waktu</div>
+        <div class="col-span-4">Pasien & No Antrean</div>
+        <div class="col-span-3">Poliklinik</div>
+        <div class="col-span-3 text-right">Status</div>
+    </div>
+    
+    <!-- Item 1: Selesai -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-5 border-b border-outline-variant/20 hover:bg-surface-container-lowest/50 transition-colors">
+        <div class="col-span-2 text-sm text-on-surface-variant flex md:flex-col items-center md:items-start gap-2 md:gap-0">
+            <span class="font-bold text-on-surface">15 Agu 2026</span>
+            <span>10:45 WIB</span>
+        </div>
+        <div class="col-span-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm border border-primary/20">
+                A-12
+            </div>
+            <div>
+                <h3 class="font-bold text-on-surface">Bpk. Ahmad Riyadi</h3>
+                <p class="text-xs text-outline">RM: 1928374</p>
+            </div>
+        </div>
+        <div class="col-span-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">stethoscope</span>
+            <span class="font-semibold text-on-surface">Poli Umum</span>
+        </div>
+        <div class="col-span-3 flex md:justify-end items-center">
+            <span class="px-3 py-1 bg-green-100 text-green-700 font-semibold text-xs rounded-full border border-green-200 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">check_circle</span> Selesai
+            </span>
+        </div>
+    </div>
+
+    <!-- Item 2: Selesai -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-5 border-b border-outline-variant/20 hover:bg-surface-container-lowest/50 transition-colors">
+        <div class="col-span-2 text-sm text-on-surface-variant flex md:flex-col items-center md:items-start gap-2 md:gap-0">
+            <span class="font-bold text-on-surface">15 Agu 2026</span>
+            <span>09:30 WIB</span>
+        </div>
+        <div class="col-span-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary font-bold text-sm border border-tertiary/20">
+                G-05
+            </div>
+            <div>
+                <h3 class="font-bold text-on-surface">Ibu Siti Khadijah</h3>
+                <p class="text-xs text-outline">RM: 8473629</p>
+            </div>
+        </div>
+        <div class="col-span-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-tertiary text-[20px]">dentistry</span>
+            <span class="font-semibold text-on-surface">Poli Gigi</span>
+        </div>
+        <div class="col-span-3 flex md:justify-end items-center">
+            <span class="px-3 py-1 bg-green-100 text-green-700 font-semibold text-xs rounded-full border border-green-200 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">check_circle</span> Selesai
+            </span>
+        </div>
+    </div>
+
+    <!-- Item 3: Dibatalkan -->
+    <div class="flex flex-col md:grid md:grid-cols-12 gap-4 px-6 py-5 hover:bg-surface-container-lowest/50 transition-colors">
+        <div class="col-span-2 text-sm text-on-surface-variant flex md:flex-col items-center md:items-start gap-2 md:gap-0">
+            <span class="font-bold text-on-surface">15 Agu 2026</span>
+            <span>08:15 WIB</span>
+        </div>
+        <div class="col-span-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-sm border border-secondary">
+                AN-2
+            </div>
+            <div>
+                <h3 class="font-bold text-on-surface">An. Budi Kecil</h3>
+                <p class="text-xs text-outline">RM: 3748291</p>
+            </div>
+        </div>
+        <div class="col-span-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]">pediatrics</span>
+            <span class="font-semibold text-on-surface">Poli Anak</span>
+        </div>
+        <div class="col-span-3 flex md:justify-end items-center">
+            <span class="px-3 py-1 bg-[#ffdad6] text-error font-semibold text-xs rounded-full border border-error/20 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">cancel</span> Dibatalkan
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="flex justify-between items-center mt-6">
+    <p class="text-sm text-on-surface-variant">Menampilkan 1-3 dari 124 riwayat</p>
+    <div class="flex gap-2">
+        <button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" disabled>Sebelumnnya</button>
+        <button class="px-3 py-1 bg-primary text-on-primary rounded-md font-semibold">1</button>
+        <button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors">2</button>
+        <button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors">3</button>
+        <button class="px-3 py-1 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors">Berikutnya</button>
+    </div>
+</div>
+
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const adminName = localStorage.getItem('adminName');
+    if (adminName) {
+        document.getElementById('sidebarAdminName').innerText = adminName;
+    }
+    const adminAvatar = localStorage.getItem('adminAvatar');
+    if (adminAvatar) {
+        const desk = document.getElementById('sidebarAvatar');
+        const mob = document.getElementById('mobileHeaderAvatar');
+        if (desk) desk.src = adminAvatar;
+        if (mob) mob.src = adminAvatar;
+    }
+});
+
+function previewAndSaveAdminAvatar(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64String = e.target.result;
+            const desk = document.getElementById('sidebarAvatar');
+            const mob = document.getElementById('mobileHeaderAvatar');
+            if (desk) desk.src = base64String;
+            if (mob) mob.src = base64String;
+            localStorage.setItem('adminAvatar', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+</script>
+</body></html>

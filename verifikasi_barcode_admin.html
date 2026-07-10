@@ -1,0 +1,154 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Verifikasi Barcode - MedQueue Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="js/queue.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+            "primary": "#0058bc", "primary-fixed": "#d8e2ff", "on-primary": "#ffffff",
+            "secondary": "#006687", "secondary-container": "#60cdff", "on-secondary-container": "#005572",
+            "surface": "#faf9fe", "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f3f8", "surface-container-high": "#e9e7ed",
+            "on-surface": "#1a1b1f", "on-surface-variant": "#414755", "outline": "#717786", "outline-variant": "#c1c6d7",
+            "background": "#faf9fe", "on-background": "#1a1b1f", "error": "#ba1a1a", "error-container": "#ffdad6"
+        },
+        "fontFamily": {
+            "headline-md": ["Inter"], "body-md": ["Inter"], "status-number": ["Inter"], "headline-lg": ["Inter"], "label-caps": ["Inter"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes pulse-ring { 0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(0, 88, 188, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 88, 188, 0); } 100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(0, 88, 188, 0); } }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center p-4 md:p-8">
+
+<main class="w-full max-w-2xl bg-surface-container-lowest rounded-2xl shadow-[0px_12px_40px_rgba(0,0,0,0.08)] border border-outline-variant/30 overflow-hidden animate-[slideUp_0.4s_ease-out]">
+    
+    <!-- Header -->
+    <div class="bg-primary px-6 py-6 text-center relative overflow-hidden">
+        <!-- Decorative bg pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-3 animate-[pulse-ring_2s_infinite]">
+                <span class="material-symbols-outlined text-white text-3xl">verified_user</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-white mb-1">Verifikasi Identitas Pasien</h1>
+            <p class="text-primary-fixed opacity-90 text-sm md:text-base">Harap cocokkan wajah dan data identitas berikut.</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 md:p-8">
+        
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
+            <!-- Avatar Besar -->
+            <div class="shrink-0 flex flex-col items-center">
+                <div class="w-32 h-32 rounded-full bg-surface-container-high border-4 border-surface shadow-md overflow-hidden relative" id="avatarContainer">
+                    <img id="patientAvatar" src="https://ui-avatars.com/api/?name=User&background=0058bc&color=fff&size=200" alt="Foto Pasien" class="w-full h-full object-cover">
+                </div>
+                <span class="mt-3 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full flex items-center gap-1 border border-green-200">
+                    <span class="material-symbols-outlined text-[14px]">face</span> Terdeteksi
+                </span>
+            </div>
+            
+            <!-- Data Pasien -->
+            <div class="flex-1 w-full space-y-4">
+                <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+                    <p class="text-xs font-bold text-outline uppercase tracking-wider mb-1">Nama Lengkap</p>
+                    <h2 id="patientName" class="text-2xl font-bold text-on-surface">Memuat...</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+                        <p class="text-xs font-bold text-outline uppercase tracking-wider mb-1">Nomor RM</p>
+                        <p id="patientRM" class="text-lg font-bold text-on-surface font-mono">RM-000000</p>
+                    </div>
+                    <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30">
+                        <p class="text-xs font-bold text-outline uppercase tracking-wider mb-1">No. Antrean</p>
+                        <p id="patientQueue" class="text-xl font-black text-primary">A-00</p>
+                    </div>
+                </div>
+                
+                <div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined">stethoscope</span>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-outline uppercase tracking-wider mb-0.5">Poliklinik Tujuan</p>
+                        <p id="patientPoli" class="text-base font-bold text-on-surface">Poli Umum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-outline-variant/30 pt-6">
+            <p class="text-center text-sm text-on-surface-variant font-semibold mb-4">Apakah pasien di hadapan Anda sesuai dengan data di atas?</p>
+            <div class="flex flex-col md:flex-row gap-3">
+                <button onclick="tolakVerifikasi()" class="flex-1 py-3 px-4 rounded-xl border-2 border-outline-variant text-on-surface-variant hover:bg-surface-container-high font-bold text-lg transition-colors flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">close</span> Tolak / Salah Orang
+                </button>
+                <button onclick="konfirmasiVerifikasi()" class="flex-1 py-3 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">check_circle</span> Validasi & Lanjutkan
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</main>
+
+<script>
+let activeTicketId = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ambil data yang dikirim dari scanner (kita bisa simpan di localStorage sementara)
+    const scannedId = localStorage.getItem('scanned_patient_id');
+    const scannedName = localStorage.getItem('scanned_patient_name');
+    const scannedPoli = localStorage.getItem('scanned_patient_poli');
+    
+    if (scannedId && scannedName) {
+        activeTicketId = scannedId;
+        document.getElementById('patientName').innerText = scannedName;
+        document.getElementById('patientQueue').innerText = scannedId;
+        document.getElementById('patientPoli').innerText = scannedPoli;
+        // Generate random RM for demo
+        document.getElementById('patientRM').innerText = 'RM-' + Math.floor(100000 + Math.random() * 900000);
+        // Generate Avatar based on initial
+        document.getElementById('patientAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(scannedName)}&background=0058bc&color=fff&size=200`;
+    } else {
+        // Fallback or demo data if accessed directly
+        activeTicketId = 'A-12';
+        document.getElementById('patientName').innerText = 'Ahmad Budi Santoso';
+        document.getElementById('patientQueue').innerText = 'A-12';
+        document.getElementById('patientPoli').innerText = 'Poli Umum';
+        document.getElementById('patientRM').innerText = 'RM-293847';
+        document.getElementById('patientAvatar').src = `https://ui-avatars.com/api/?name=Ahmad+Budi&background=0058bc&color=fff&size=200`;
+    }
+});
+
+function konfirmasiVerifikasi() {
+    if(activeTicketId) {
+        updateQueueStatus(activeTicketId, 'Hampir Tiba');
+        // Redirect ke verifikasi berhasil yang sebenarnya akan membawa admin ke sesi pelayanan
+        window.location.href = 'verifikasi_berhasil.html';
+    }
+}
+
+function tolakVerifikasi() {
+    if(confirm('Apakah Anda yakin ingin membatalkan proses verifikasi ini?')) {
+        window.location.href = 'dashboard_admin_utama.html';
+    }
+}
+</script>
+</body></html>
