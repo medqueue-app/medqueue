@@ -124,11 +124,14 @@ function loadHistory() {
     }
 
     historyQueues.forEach(q => {
-        // Styling based on Poli
+        // Styling and Doctor Mapping based on Poli
+        let doctorName = 'Dokter Pemeriksa';
         let icon = 'stethoscope', color = 'primary';
-        if (q.poliName.includes('Gigi')) { icon = 'dentistry'; color = 'tertiary'; }
-        if (q.poliName.includes('Jantung')) { icon = 'cardiology'; color = 'secondary'; }
-        if (q.poliName.includes('Anak')) { icon = 'child_care'; color = 'secondary'; }
+        
+        if (q.poliName.includes('Umum')) { doctorName = 'Dr. Nita Astuti'; icon = 'stethoscope'; color = 'primary'; }
+        if (q.poliName.includes('Gigi')) { doctorName = 'Dr. Ronald Cooper'; icon = 'dentistry'; color = 'tertiary'; }
+        if (q.poliName.includes('Anak')) { doctorName = 'Dr. Rani Mutiara, Sp.A'; icon = 'child_care'; color = 'secondary'; }
+        if (q.poliName.includes('Jantung')) { doctorName = 'Dr. Hendra Setiawan, Sp.JP'; icon = 'cardiology'; color = 'secondary'; }
 
         // Date formatting
         const dateObj = new Date(q.timestamp);
@@ -166,7 +169,7 @@ function loadHistory() {
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-0.5">Dokter Pemeriksa</p>
-                        <p class="text-[14px] font-semibold text-on-surface">${adminName}</p>
+                        <p class="text-[14px] font-semibold text-on-surface">${doctorName}</p>
                     </div>
                 </div>
                 
